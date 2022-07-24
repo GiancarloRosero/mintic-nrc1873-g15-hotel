@@ -1,15 +1,15 @@
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home/home-hotel.component';
+import { HomeComponent } from './components/home/home/home-hotel.component';
 
 export const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./home/home.module')
+    loadChildren: () => import('./components/home/home.module')
       .then(m => m.HomeModule)
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module')
+    loadChildren: () => import('./components/auth/auth.module')
       .then(m => m.AuthModule)
   },
   {
