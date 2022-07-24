@@ -5,11 +5,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
   declarations: [
-    NavBarComponent
+    NavBarComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -17,15 +19,16 @@ import { RouterModule } from '@angular/router';
     // Angular material
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
     
   ],
   exports: [
     NavBarComponent,
+    FooterComponent,
     // Angular material
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
   ]
 })
 export class SharedModule { }
