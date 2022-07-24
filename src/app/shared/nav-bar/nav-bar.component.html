@@ -1,1 +1,8 @@
-<p>nav-bar works!</p>
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <a mat-button [routerLink]="['/']"><span><mat-icon>eco</mat-icon>The Cullinan South Tower</span></a>
+  <div class="spacer"></div>
+  <a mat-button [routerLink]="['/']">Inicio</a>
+  <a mat-raised-button [routerLink]="['/auth/register']">Registrarse</a>
+  <a mat-button [routerLink]="['/auth/login']">Iniciar Sesión</a>
+  <a mat-button [routerLink]="['/']">Cerrar Sesión</a>
+</mat-toolbar>
