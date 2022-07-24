@@ -29,5 +29,13 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public searchRooms(): void {
+
+  }
+
+  public searchRoomsIsValid(): boolean {
+    return this.bookForm.invalid;
+  }
+
 
 }
