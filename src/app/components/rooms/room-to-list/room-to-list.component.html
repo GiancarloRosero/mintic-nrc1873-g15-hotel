@@ -1,0 +1,17 @@
+<main>
+
+  <mat-grid-list cols="4" rowHeight="100px">
+    <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows">
+      <h2 *ngIf="tile.image === '' && tile.description === '' && tile.button === '' ">{{tile.title}}</h2>
+      <p *ngIf="tile.image === '' && tile.description !== '' && tile.button === '' ">{{tile.description}}</p>
+      <div *ngIf="tile.image !== '' ">
+        <img class="images-news" mat-card-image [src]="tile.image">
+      </div>
+      <button *ngIf="tile.button!== ''" mat-raised-button color="primary">Ver habitación</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <br/>
+  <hr />
+  <br/>
+</main>

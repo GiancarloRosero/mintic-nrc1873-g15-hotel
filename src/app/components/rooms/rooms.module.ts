@@ -10,11 +10,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { RoomsComponent } from './rooms/rooms.component';
 import { RoomsRoutingModule } from './rooms-routing.module';
+import { RoomToListComponent } from './room-to-list/room-to-list.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
   declarations: [
-    RoomsComponent
+    RoomsComponent,
+    RoomToListComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +33,9 @@ import { RoomsRoutingModule } from './rooms-routing.module';
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
-    MatInputModule
+    MatInputModule,
+    MatGridListModule,
+    MatButtonModule
   ],
   exports: [
     RoomsComponent
