@@ -8,6 +8,11 @@ export const routes: Routes = [
       .then(m => m.HomeModule)
   },
   {
+    path: 'rooms',
+    loadChildren: () => import('./components/rooms/rooms.module')
+      .then(m => m.RoomsModule)
+  },
+  {
     path: 'auth',
     loadChildren: () => import('./components/auth/auth.module')
       .then(m => m.AuthModule)

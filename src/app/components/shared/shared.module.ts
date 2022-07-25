@@ -7,6 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { RoomComponent } from './room/room.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -22,11 +24,14 @@ import { RoomComponent } from './room/room.component';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
+    MatCardModule,
+    MatInputModule
     
   ],
   exports: [
     NavBarComponent,
     FooterComponent,
+    RoomComponent,
     // Angular material
     MatToolbarModule,
     MatIconModule,
