@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ClickEvent, HoverRatingChangeEvent, RatingChangeEvent } from 'angular-star-rating';
 
 @Component({
@@ -8,28 +9,15 @@ import { ClickEvent, HoverRatingChangeEvent, RatingChangeEvent } from 'angular-s
 })
 export class CommentComponent implements OnInit {
 
-  onClickResult: ClickEvent;
-  onHoverRatingChangeResult: HoverRatingChangeEvent;
-  onRatingChangeResult: RatingChangeEvent;
+  commentsForm = new FormGroup({
+    rating: new FormControl('')
+  });
 
   constructor() { }
 
   ngOnInit(): void {
+    this.commentsForm.controls.rating.setValue(4);
   }
 
-  onClick = ($event: ClickEvent) => {
-    console.log('onClick $event: ', $event);
-    this.onClickResult = $event;
-  };
-
-  onRatingChange = ($event: RatingChangeEvent) => {
-    console.log('onRatingUpdated $event: ', $event);
-    this.onRatingChangeResult = $event;
-  };
-
-  onHoverRatingChange = ($event: HoverRatingChangeEvent) => {
-    console.log('onHoverRatingChange $event: ', $event);
-    this.onHoverRatingChangeResult = $event;
-  };
 
 }

@@ -3,11 +3,9 @@
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>Nombre usuario</mat-card-title>
   </mat-card-header>
-  <div>
+  <div [formGroup]="commentsForm">
     <span>Calificación:</span>
-    <star-rating [hoverEnabled]="true" (starClickChange)="onClick($event)" (ratingChange)="onRatingChange($event)"
-      (hoverRatingChange)="onHoverRatingChange($event)">
-    </star-rating>
+    <star-rating-control [hoverEnabled]="true" formControlName="rating" ></star-rating-control>
   </div>
   <mat-card-content>
     <p>

@@ -4,6 +4,8 @@
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>Nombre habitación</mat-card-title>
       <mat-card-subtitle>Descripción corta de la habitación</mat-card-subtitle>
+      <span>Calificación</span>
+      <star-rating-control [readOnly]="true" [hoverEnabled]="true" [rating]="raitingValue"></star-rating-control>
     </mat-card-header>
     <div [style.height]="'auto'">
       <mat-carousel timings="250ms ease-in" [autoplay]="false" [interval]="5000" color="accent" maxWidth="auto"
@@ -15,18 +17,24 @@
     </div>
     <mat-card-content>
       <ul>
-        <li><mat-icon>bed</mat-icon></li>
-        <li><mat-icon>wifi</mat-icon></li>
-        <li><mat-icon>restaurant</mat-icon></li>
+        <li>
+          <mat-icon>bed</mat-icon>
+        </li>
+        <li>
+          <mat-icon>wifi</mat-icon>
+        </li>
+        <li>
+          <mat-icon>restaurant</mat-icon>
+        </li>
       </ul>
-      
+
       <p>
         Descripción larga de la habitación
       </p>
     </mat-card-content>
     <div class="comments">
       <app-comment></app-comment>
-      
+
     </div>
     <mat-card-actions>
       <button mat-button>LIKE</button>

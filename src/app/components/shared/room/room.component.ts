@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoomComponent implements OnInit {
 
+  raitingValue: number = 2;
+
   slides = [
     { 'image': 'https://gsr.dev/material2-carousel/assets/demo.png' },
     { 'image': 'https://gsr.dev/material2-carousel/assets/demo.png' },
