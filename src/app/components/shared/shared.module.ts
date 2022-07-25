@@ -11,9 +11,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatCarouselModule } from 'ng-mat-carousel';
 import { CommentComponent } from './comment/comment.component';
-import { StarRatingModule } from 'angular-star-rating';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StarRatingModule } from 'angular-star-rating';
 
 
 @NgModule({
@@ -26,9 +25,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     RouterModule,
-    BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    StarRatingModule.forRoot(),
     //Material carousel
     MatCarouselModule.forRoot(),
     // Angular material
