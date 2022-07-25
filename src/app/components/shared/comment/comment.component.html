@@ -2,8 +2,13 @@
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>Nombre usuario</mat-card-title>
-    <mat-card-subtitle>Calificación: </mat-card-subtitle>
   </mat-card-header>
+  <div>
+    <span>Calificación:</span>
+    <star-rating [hoverEnabled]="true" (starClickChange)="onClick($event)" (ratingChange)="onRatingChange($event)"
+      (hoverRatingChange)="onHoverRatingChange($event)">
+    </star-rating>
+  </div>
   <mat-card-content>
     <p>
       The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
