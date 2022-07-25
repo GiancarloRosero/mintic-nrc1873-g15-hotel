@@ -9,17 +9,28 @@ import { FooterComponent } from './footer/footer.component';
 import { RoomComponent } from './room/room.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { MatCarouselModule } from 'ng-mat-carousel';
+import { CommentComponent } from './comment/comment.component';
+import { StarRatingModule } from 'angular-star-rating';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     NavBarComponent,
     FooterComponent,
-    RoomComponent
+    RoomComponent,
+    CommentComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    //Material carousel
+    MatCarouselModule.forRoot(),
     // Angular material
     MatToolbarModule,
     MatIconModule,
@@ -32,10 +43,7 @@ import { MatInputModule } from '@angular/material/input';
     NavBarComponent,
     FooterComponent,
     RoomComponent,
-    // Angular material
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
+    CommentComponent,
   ]
 })
 export class SharedModule { }

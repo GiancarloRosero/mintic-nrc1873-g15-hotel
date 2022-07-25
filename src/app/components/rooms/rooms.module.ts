@@ -22,6 +22,8 @@ import { RoomsRoutingModule } from './rooms-routing.module';
     ReactiveFormsModule,
     SharedModule,
     RoomsRoutingModule,
+    //Material carousel
+    MatCarouselModule.forRoot(),
     //Angular Material
     MatCardModule,
     MatDatepickerModule,
