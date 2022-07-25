@@ -6,12 +6,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
+import { RoomComponent } from './room/room.component';
 
 
 @NgModule({
   declarations: [
     NavBarComponent,
-    FooterComponent
+    FooterComponent,
+    RoomComponent
   ],
   imports: [
     CommonModule,
