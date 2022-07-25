@@ -5,7 +5,7 @@
   </mat-card-header>
   <div [formGroup]="commentsForm">
     <span>Calificación:</span>
-    <star-rating-control [hoverEnabled]="true" formControlName="rating" ></star-rating-control>
+    <star-rating-control [hoverEnabled]="true" [readOnly]="true" [rating]="raitingValue"></star-rating-control>
   </div>
   <mat-card-content>
     <p>

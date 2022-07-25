@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ClickEvent, HoverRatingChangeEvent, RatingChangeEvent } from 'angular-star-rating';
 
@@ -8,6 +8,9 @@ import { ClickEvent, HoverRatingChangeEvent, RatingChangeEvent } from 'angular-s
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit {
+
+  @Input()
+  raitingValue: number = 2;
 
   commentsForm = new FormGroup({
     rating: new FormControl('')

@@ -15,6 +15,9 @@
           overlayColor="#00000040" [hideOverlay]="false"></mat-carousel-slide>
       </mat-carousel>
     </div>
+
+    <br/>
+
     <mat-card-content>
       <ul>
         <li>
@@ -27,19 +30,30 @@
           <mat-icon>restaurant</mat-icon>
         </li>
       </ul>
-
       <p>
         Descripción larga de la habitación
       </p>
     </mat-card-content>
-    <div class="comments">
-      <app-comment></app-comment>
 
+    <hr/>
+
+    <div [formGroup]="commentForm" class="add-comment">
+      <h4>Agregar comentario</h4>
+      <span>Calificación:</span>
+      <star-rating-control [hoverEnabled]="true" formControlName="rating"></star-rating-control>
+      <textarea formControlName="comment" rows="10">
+
+      </textarea>
+      <div class="div-btn-send">
+        <button class="btn-send" mat-raised-button color="primary">Enviar</button>
+      </div>
     </div>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
+    <div class="comments">
+      <h3>3 comentarios</h3>
+      <app-comment></app-comment>
+      <app-comment></app-comment>
+      <app-comment></app-comment>
+    </div>
   </mat-card>
 
 </main>
