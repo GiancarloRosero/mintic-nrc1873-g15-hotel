@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
     this.bookForm = new FormGroup({
       dateStart: new FormControl('', [Validators.required]),
       dateEnd: new FormControl('', [Validators.required]),
+      guestNumber: new FormControl('', [Validators.required, Validators.min(0), Validators.max(6)])
     })
   }
 

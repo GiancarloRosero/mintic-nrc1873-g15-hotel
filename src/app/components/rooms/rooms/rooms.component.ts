@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-rooms',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoomsComponent implements OnInit {
 
-  constructor() { }
+  bookForm: FormGroup;
+
+  constructor() {
+    this.bookForm = new FormGroup({
+      dateStart: new FormControl('', [Validators.required]),
+      dateEnd: new FormControl('', [Validators.required]),
+      guestNumber: new FormControl('', [Validators.required, Validators.min(0), Validators.max(6)])
+    });
+  }
 
   ngOnInit(): void {
+  }
+
+  public searchRooms(): void {
+
+  }
+
+  public searchRoomsIsValid(): boolean {
+    return this.bookForm.invalid;
   }
 
 }
