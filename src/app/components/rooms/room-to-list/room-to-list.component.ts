@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 export interface Tile {
-  button: string;
+  button?: string;
+  txtButton?: string;
   cols: number;
   rows: number;
-  title: string;
-  description: string;
-  image: string;
+  title?: string;
+  description?: string;
+  image?: string;
 }
 
 @Component({
@@ -18,10 +19,10 @@ export interface Tile {
 export class RoomToListComponent implements OnInit {
 
   tiles: Tile[] = [
-    {title: 'Nombre habitación', description: '', cols: 1, rows: 1, button: '', image: ''},
-    {title: 'Imágen habitación', description: '', cols: 3, rows: 3, button: '', image: 'assets/images/home/img1.jpg'},
-    {title: 'Descripción habitación', description: 'Descripción habitación', cols: 1, rows: 1, button: '', image: ''},
-    {title: 'Ver habitación', description: '', cols: 1, rows: 1, button: 'ruta', image: ''},
+    { title: 'Nombre habitación', cols: 1, rows: 1 },
+    { cols: 3, rows: 3, image: 'assets/images/home/img1.jpg' },
+    { description: 'Descripción habitación', cols: 1, rows: 1 },
+    { txtButton: 'Ver habitación', cols: 1, rows: 1, button: 'ruta' },
   ];
 
   constructor(private router: Router,) { }
