@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface Tile {
   button: string;
@@ -23,9 +24,13 @@ export class RoomToListComponent implements OnInit {
     {title: 'Ver habitación', description: '', cols: 1, rows: 1, button: 'ruta', image: ''},
   ];
 
-  constructor() { }
+  constructor(private router: Router,) { }
 
   ngOnInit(): void {
+  }
+
+  viewRoom(): void {
+    this.router.navigate(['/rooms/room', 1])
   }
 
 }

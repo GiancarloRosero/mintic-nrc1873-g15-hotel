@@ -7,7 +7,7 @@
       <div *ngIf="tile.image !== '' ">
         <img class="images-news" mat-card-image [src]="tile.image">
       </div>
-      <button *ngIf="tile.button!== ''" mat-raised-button color="primary">Ver habitación</button>
+      <button (click)="viewRoom()" *ngIf="tile.button!== ''" mat-raised-button color="primary">Ver habitación</button>
     </mat-grid-tile>
   </mat-grid-list>
 
