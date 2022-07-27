@@ -18,6 +18,11 @@ export const routes: Routes = [
       .then(m => m.AuthModule)
   },
   {
+    path: 'admin',
+    loadChildren: () => import('./components/admin/admin.module')
+      .then(m => m.AdminModule)
+  },
+  {
     path: '**',
     component: HomeComponent
   },
