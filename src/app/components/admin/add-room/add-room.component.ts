@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-room',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddRoomComponent implements OnInit {
 
-  constructor() { }
+  roomForm: FormGroup;
+
+  constructor() {
+    this.roomForm = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      descriptionShort: new FormControl('', [Validators.required]),
+      descriptionLarge: new FormControl('', [Validators.required])
+    });
+  }
 
   ngOnInit(): void {
   }

@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SharedModule } from './components/shared/shared.module';
+import { FileUploadServiceService } from './services/file-upload-service.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,6 +21,7 @@ import { SharedModule } from './components/shared/shared.module';
     routing,
     BrowserAnimationsModule,
     SharedModule,
+    HttpClientModule,
     // Angular material
     MatButtonModule,
     MatSidenavModule,
@@ -29,7 +32,6 @@ import { SharedModule } from './components/shared/shared.module';
     MatSidenavModule,
     MatToolbarModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

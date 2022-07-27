@@ -13,6 +13,8 @@ import { MatCarouselModule } from 'ng-mat-carousel';
 import { CommentComponent } from './comment/comment.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StarRatingModule } from 'angular-star-rating';
+import { UploadImagesComponent } from './upload-images/upload-images.component';
+import { FileUploadServiceService } from 'src/app/services/file-upload-service.service';
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import { StarRatingModule } from 'angular-star-rating';
     FooterComponent,
     RoomComponent,
     CommentComponent,
+    UploadImagesComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +46,7 @@ import { StarRatingModule } from 'angular-star-rating';
     FooterComponent,
     RoomComponent,
     CommentComponent,
+    UploadImagesComponent
   ]
 })
 export class SharedModule { }

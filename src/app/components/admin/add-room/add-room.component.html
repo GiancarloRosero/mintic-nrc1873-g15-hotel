@@ -1,1 +1,23 @@
-<p>add-room works!</p>
+<main>
+  <h2>Agregar habitación</h2>
+  <div [formGroup]="roomForm" class="div-form">
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>Nombre habitación</mat-label>
+      <input matInput type="text" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Descripción corta de la habitación</mat-label>
+      <textarea matInput placeholder="Habitación sencilla con dos camas..."
+        formControlName="descriptionShort"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Descripción completa de la habitación</mat-label>
+      <textarea matInput placeholder="Habitación con dos baños privados..."
+        formControlName="descriptionShort"></textarea>
+    </mat-form-field>
+  </div>
+
+  <app-upload-images></app-upload-images>
+</main>
