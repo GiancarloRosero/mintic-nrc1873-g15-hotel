@@ -1,6 +1,6 @@
 # MinticNrc1873G15HotelFront
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.17.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.9.
 
 ## Development server
 
