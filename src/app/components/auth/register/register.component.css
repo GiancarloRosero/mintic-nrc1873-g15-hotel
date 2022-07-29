@@ -1,31 +1,4 @@
-.text-center {
-    text-align: center;
-}
-
-.example-container {
-    height: 50%;
-    width: 20%;
-    text-align: left;
-}
-
-.d-flex-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.mat-form-field {
-    width: 100%;
-}
-
-.mt-top {
-    margin-top: 30px;
-}
-
-.mt-top-2 {
-    margin-top: 10px;
-}
-
-.mt-top-2-password {
-    margin-top: 20px;
+.container{
+    box-shadow: -1px 3px 66px 0px rgba(0,0,0,0.75);
+    border-radius: 5%;
 }

@@ -11,6 +11,10 @@ import { SharedModule } from './components/shared/shared.module';
 import { FileUploadServiceService } from './services/file-upload-service.service';
 import { HttpClientModule } from '@angular/common/http';
 
+import { MatTableModule } from '@angular/material/table';
+import {FormsModule} from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -25,13 +29,17 @@ import { HttpClientModule } from '@angular/common/http';
     // Angular material
     MatButtonModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTableModule,
+    MatInputModule,
+    FormsModule    
   ],
   exports: [
     // Angular material
     MatSidenavModule,
     MatToolbarModule
   ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
