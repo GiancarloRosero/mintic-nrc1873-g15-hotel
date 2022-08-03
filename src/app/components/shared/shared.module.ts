@@ -16,6 +16,7 @@ import { StarRatingModule } from 'angular-star-rating';
 import { UploadImagesComponent } from './upload-images/upload-images.component';
 import { FileUploadServiceService } from 'src/app/services/file-upload-service.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CardHomeComponent } from './card-home/card-home.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     RoomComponent,
     CommentComponent,
     UploadImagesComponent,
+    CardHomeComponent,
   ],
   imports: [
     CommonModule,
@@ -49,7 +51,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FooterComponent,
     RoomComponent,
     CommentComponent,
-    UploadImagesComponent
+    UploadImagesComponent,
+    CardHomeComponent
   ]
 })
 export class SharedModule { }

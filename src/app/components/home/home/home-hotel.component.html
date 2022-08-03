@@ -64,54 +64,7 @@
   </div>
 </mat-card> -->
 <div class="containerCards">
-  <mat-card class="lastNotices-card cards">
-    <mat-card-header>
-      <div mat-card-avatar class="lastNotices-header-image cardsAvatar lnAvatar"></div>
-      <mat-card-title>Últimas noticias</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image class="cardsImg" src="../../../../assets/images/home/img4.jpg">
-    <mat-card-content>
-      <p>
-        Nos gustaría acercarte cada día un poco más a nuestra región: su oferta
-        culinaria, sus oportunidades para practicar deportes al aire libre, pero también su potencial como lugar
-        tranquilo
-        de contemplación. En la siguiente sección, le contamos un poco más sobre lo que está sucediendo en este momento.
-      </p>
-    </mat-card-content>
-    <mat-card-actions class="">
-      <button class="bg-danger w-100 buton" mat-button>Ir alla!</button>
-    </mat-card-actions>
-  </mat-card>
-
-  <mat-card class="gastronomy-card cards">
-    <mat-card-header>
-      <div mat-card-avatar class="gastronomy-header-image cardsAvatar gasAvatar"></div>
-      <mat-card-title>Gastronomia</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image class="cardsImg" src="../../../../assets/images/home/gastronomy.jpg">
-    <mat-card-content>
-      <p>
-        Podrá degustar los platos más representativos de nuestro país de las diferentes regiones gracias a que contamos con los mejores chef del pais.
-      </p>
-    </mat-card-content>
-    <mat-card-actions class="h-20 w-100 cardGas">
-      <button class="bg-danger butonGas" mat-button>Ir alla!</button>
-    </mat-card-actions>
-  </mat-card>
-
-  <mat-card class="nextEvents-card cards">
-    <mat-card-header>
-      <div mat-card-avatar class="nextEvents-header-image cardsAvatar evAvatar"></div>
-      <mat-card-title>Proximos Eventos</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image class="cardsImg" src="../../../../assets/images/home/eventos.png">
-    <mat-card-content>
-      <p>
-        Le ofrecemos el mejor equipamiento tecnológico y ayuda especializada para que su evento sea todo un éxito.
-      </p>
-    </mat-card-content>
-    <mat-card-actions class="h-20 w-100 CardNextEvents">
-      <button class="bg-danger butonNextEvents" mat-button>Ir alla!</button>
-    </mat-card-actions>
-  </mat-card>
+  <div *ngFor="let card of cards">
+    <app-card-home [title]="card.title" [description]="card.descripion" [image]="card.image"></app-card-home>
+  </div>
 </div>
