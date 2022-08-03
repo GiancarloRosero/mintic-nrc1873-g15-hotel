@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StarRatingModule } from 'angular-star-rating';
 import { UploadImagesComponent } from './upload-images/upload-images.component';
 import { FileUploadServiceService } from 'src/app/services/file-upload-service.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -31,6 +32,8 @@ import { FileUploadServiceService } from 'src/app/services/file-upload-service.s
     FormsModule,
     ReactiveFormsModule,
     StarRatingModule.forRoot(),
+    // FontAwesome
+    FontAwesomeModule,
     //Material carousel
     MatCarouselModule.forRoot(),
     // Angular material
