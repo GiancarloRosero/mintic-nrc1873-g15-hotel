@@ -1,6 +1,7 @@
 <main>
-  <h1>Nuestras habitaciones</h1>
-  <div>
+  <div class="container">
+    <h1 class="p-5">Nuestras habitaciones</h1>
+  <div class="filtros">
     <span>Filtrar</span>
     <div class="book" [formGroup]="bookForm">
       <mat-form-field appearance="fill" class="example-form-field">
@@ -21,14 +22,15 @@
 
       <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>Cantidad de personas</mat-label>
-        <input formControlName="guestNumber" matInput type="number" min="1" max="6" >
+        <input formControlName="guestNumber" matInput type="number" min="1" max="6">
       </mat-form-field>
-      
-      <button mat-raised-button color="primary" (click)="searchRooms()" [disabled]="searchRoomsIsValid()">Buscar
+
+      <button class="button1" mat-raised-button color="primary" (click)="searchRooms()"
+        [disabled]="searchRoomsIsValid()">Buscar
         habitaciones</button>
     </div>
   </div>
-
+</div>
   <app-room-to-list></app-room-to-list>
   <app-room-to-list></app-room-to-list>
   <app-room-to-list></app-room-to-list>

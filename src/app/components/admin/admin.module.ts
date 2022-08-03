@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from '../shared/shared.module';
 import { FileUploadServiceService } from 'src/app/services/file-upload-service.service';
+import { MatTableModule } from '@angular/material/table';
 
 
 
@@ -27,10 +28,13 @@ import { FileUploadServiceService } from 'src/app/services/file-upload-service.s
     SharedModule,
     // Angular material
     MatIconModule,
+    MatTableModule,
     MatButtonModule,
     MatCardModule,
     MatInputModule,
     MatFormFieldModule
-  ]
+  ],
+  providers: [],
+  bootstrap: [GuestsComponent]
 })
 export class AdminModule { }

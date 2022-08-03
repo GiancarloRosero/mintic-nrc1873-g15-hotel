@@ -13,3 +13,57 @@
 .images-news {
     max-width: 400px;
 }
+
+.cards {
+    margin: 3%;
+    max-width: 400px;
+}
+
+.cardsAvatar {
+    max-width: 100%;
+    background-size: cover;
+}
+
+.lnAvatar {
+    background-image: url(../../../../assets/images/home/campana-del-hotel.png);
+}
+
+.gasAvatar{
+    background-image: url(../../../../assets/images/home/gastronomyIcon.png);
+}
+
+.evAvatar{
+    background-image: url(../../../../assets/images/home/calendar.png);
+}
+
+.containerCards {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+.butonNextEvents {
+    position: absolute;
+    width: 384px;
+    bottom: 0;
+}
+
+.CardNextEvents {
+    position: absolute;
+    height: 128px;
+}
+
+.butonGas {
+    position: absolute;
+    width: 384px;
+    bottom: 0;
+}
+
+.cardGas {
+    position: absolute;
+    height: 107px;
+}
+
+.cardsImg {
+
+    height: 300px;
+}

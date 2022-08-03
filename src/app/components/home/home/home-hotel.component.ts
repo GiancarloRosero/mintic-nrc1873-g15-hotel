@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatCarousel, MatCarouselComponent } from 'ng-mat-carousel';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home-hotel',
@@ -12,11 +13,11 @@ export class HomeComponent implements OnInit {
   bookForm: FormGroup;
 
   slides = [
-    { 'image': 'https://gsr.dev/material2-carousel/assets/demo.png' },
-    { 'image': 'https://gsr.dev/material2-carousel/assets/demo.png' },
-    { 'image': 'https://gsr.dev/material2-carousel/assets/demo.png' },
-    { 'image': 'https://gsr.dev/material2-carousel/assets/demo.png' },
-    { 'image': 'https://gsr.dev/material2-carousel/assets/demo.png' }
+    { 'image': '../../../../assets/images/home/imgHome1.jpg' },
+    { 'image': '../../../../assets/images/home/imgHome2.jpg' },
+    { 'image': '../../../../assets/images/home/imgHome3.jpg' },
+    { 'image': '../../../../assets/images/home/imgHome4.jpg' },
+    { 'image': '../../../../assets/images/home/imgHome5.jpg' }
   ];
 
   constructor() {

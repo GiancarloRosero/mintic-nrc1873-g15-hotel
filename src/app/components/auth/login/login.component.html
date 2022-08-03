@@ -1,10 +1,10 @@
-<div class="text-center">
+<div class="text-center container w-50 p-5 m-5 mx-auto">
   <h4 class="text-center">Iniciar Sesión</h4>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate class="d-flex-center">
-    <div class="example-container">
-      <div>
-        <mat-form-field>
-          <input matInput placeholder="Email" formControlName="email">
+    <div>
+      <div class="w-100 mx-auto">
+        <mat-form-field class="mt-2 d-block">
+          <input class="w-100" matInput placeholder="Email" formControlName="email">
           <mat-error *ngIf="!loginForm.get('email')?.errors?.required && (loginForm.get('email')?.errors?.pattern)">
             Por favor, introduce una dirección de correo electrónico válida
           </mat-error>
@@ -14,9 +14,9 @@
           </mat-error>
         </mat-form-field>
       </div>
-      <div class="mt-top-2">
-        <mat-form-field>
-          <input matInput type="password" placeholder="Contraseña" formControlName="password">
+      <div class="w-100 mx-auto">
+        <mat-form-field class="mt-2 d-block">
+          <input class="w-100"matInput type="password" placeholder="Contraseña" formControlName="password">
           <mat-error
             *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched) && loginForm.get('password')?.errors?.required">
             Contraseña es obligatoria
