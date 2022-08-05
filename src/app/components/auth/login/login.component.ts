@@ -13,7 +13,9 @@ import { SpinnerService } from 'src/app/services/spinner/spinner.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup | any;
+  loginForm: FormGroup;
+
+  sessionOk: number = 0;
 
   constructor(private router: Router, private authService: AuthService, private spinnerService: SpinnerService) {
     this.loginForm = new FormGroup({
@@ -23,6 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loginForm.valueChanges.subscribe(() => this.sessionOk = 0);
   }
 
   onSubmit() {
@@ -36,12 +39,15 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.controls.password.value
     }
     this.authService.login(user).subscribe((data) => {
-      sessionStorage.setItem('isLogin', JSON.stringify(data))
       this.spinnerService.stop(spinnerRef);
-      this.router.navigate(['/'])
-        .then(() => {
-          this.authService.setLoggedIn(true);
-        });
+      if (data.statusCode && data.statusCode == 200) {
+        this.sessionOk = 1;
+        sessionStorage.setItem('isLogin', JSON.stringify(data))
+        this.authService.setLoggedIn(true);
+        this.router.navigate(['/']);
+      } else {
+        this.sessionOk = 2;
+      }
     }, (_) => {
       this.spinnerService.stop(spinnerRef);
     });

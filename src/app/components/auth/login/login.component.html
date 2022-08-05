@@ -3,6 +3,9 @@
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate class="d-flex-center">
     <div>
       <div class="w-100 mx-auto">
+        <mat-error *ngIf="sessionOk == 2">
+          Credenciales incorrectas
+        </mat-error>
         <mat-form-field class="mt-2 d-block">
           <input class="w-100" matInput placeholder="Email" formControlName="email">
           <mat-error *ngIf="!loginForm.get('email')?.errors?.required && (loginForm.get('email')?.errors?.pattern)">
@@ -16,7 +19,7 @@
       </div>
       <div class="w-100 mx-auto">
         <mat-form-field class="mt-2 d-block">
-          <input class="w-100"matInput type="password" placeholder="Contraseña" formControlName="password">
+          <input class="w-100" matInput type="password" placeholder="Contraseña" formControlName="password">
           <mat-error
             *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched) && loginForm.get('password')?.errors?.required">
             Contraseña es obligatoria
