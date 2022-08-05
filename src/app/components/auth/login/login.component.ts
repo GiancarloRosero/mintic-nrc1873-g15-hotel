@@ -36,9 +36,14 @@ export class LoginComponent implements OnInit {
       email: this.loginForm.controls.email.value,
       password: this.loginForm.controls.password.value
     }
-    this.authService.login(user).subscribe(data => {
+    this.authService.login(user).subscribe((data) => {
       console.log(data);
+      sessionStorage.setItem('isLogin', JSON.stringify(data))
       this.spinnerService.stop(spinnerRef);
+      this.router.navigate(['/'])
+        .then(() => {
+          window.location.reload();
+        });
     }, (_) => {
       this.spinnerService.stop(spinnerRef);
     });
