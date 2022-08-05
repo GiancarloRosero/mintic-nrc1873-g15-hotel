@@ -17,6 +17,9 @@ import { UploadImagesComponent } from './upload-images/upload-images.component';
 import { FileUploadServiceService } from 'src/app/services/file-upload-service.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CardHomeComponent } from './card-home/card-home.component';
+import { SpinnerViewComponent } from './spinner-view/spinner-view.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -27,6 +30,7 @@ import { CardHomeComponent } from './card-home/card-home.component';
     CommentComponent,
     UploadImagesComponent,
     CardHomeComponent,
+    SpinnerViewComponent,
   ],
   imports: [
     CommonModule,
@@ -43,8 +47,10 @@ import { CardHomeComponent } from './card-home/card-home.component';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatInputModule
-    
+    MatInputModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
+
   ],
   exports: [
     NavBarComponent,
@@ -52,7 +58,8 @@ import { CardHomeComponent } from './card-home/card-home.component';
     RoomComponent,
     CommentComponent,
     UploadImagesComponent,
-    CardHomeComponent
+    CardHomeComponent,
+    SpinnerViewComponent
   ]
 })
 export class SharedModule { }
