@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { UserLogin } from 'src/app/models/user-login';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { SpinnerService } from 'src/app/services/spinner/spinner.service';
-import { SpinnerViewComponent } from '../../shared/spinner-view/spinner-view.component';
+
 
 @Component({
   selector: 'app-login',
@@ -37,18 +36,15 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.controls.password.value
     }
     this.authService.login(user).subscribe((data) => {
-      console.log(data);
       sessionStorage.setItem('isLogin', JSON.stringify(data))
       this.spinnerService.stop(spinnerRef);
       this.router.navigate(['/'])
         .then(() => {
-          window.location.reload();
+          this.authService.setLoggedIn(true);
         });
     }, (_) => {
       this.spinnerService.stop(spinnerRef);
     });
-    /* localStorage.setItem('user', this.loginForm.value)
-    this.router.navigate(['/home']) */
   }
 
 }
