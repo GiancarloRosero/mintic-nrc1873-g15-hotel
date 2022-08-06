@@ -4,6 +4,7 @@ import { UserLogin } from 'src/app/models/user-login';
 import { UserLoginSucess } from 'src/app/models/user-login-success';
 import { HttpClientService } from '../http-client/http-client.service';
 import { ENDPOINTS } from 'src/app/config/endpoints';
+import { UserRegister } from 'src/app/models/user-register';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,6 @@ export class AuthService {
     return this.httpClientService.post<any>(ENDPOINTS.login, user)
   }
 
-
   getLoggedIn(): Observable<boolean> {
     return this.userLoggedIn.asObservable();
   }
@@ -36,5 +36,9 @@ export class AuthService {
 
   setLoggedIn(val: boolean) {
     this.userLoggedIn.next(val);
+  }
+
+  register(user: UserRegister): Observable<any> {
+    return this.httpClientService.post<any>(ENDPOINTS.register, user)
   }
 }

@@ -8,4 +8,5 @@ export class Endpoint {
 
 export const ENDPOINTS = {
     login: new Endpoint(URL_BASE, "auth/login"),
+    register: new Endpoint(URL_BASE, "auth/register"),
 }

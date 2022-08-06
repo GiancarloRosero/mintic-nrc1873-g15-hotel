@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    var spinnerRef = this.spinnerService.start();
+    var spinnerRef = this.spinnerService.start("Iniciando sesión...");
 
     if (!this.loginForm.valid) {
       return;
