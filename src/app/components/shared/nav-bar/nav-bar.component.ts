@@ -24,7 +24,6 @@ export class NavBarComponent implements OnInit {
 
   constructor(private router: Router, private authService: AuthService) {
     this.subscription = this.authService.getLoggedIn().subscribe(value => {
-      console.log(value)
       this.userLoggedIn = value;
     });
   }
@@ -32,7 +31,7 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
     if(!INVALID_DATA.includes(String(this.authService.isLoginUser()))) {
       this.userLogin = this.authService.isLoginUser();
-      this.authService.setLoggedIn(this.userLogin.statusCode == 200);
+      this.authService.setLoggedIn(this.userLogin.status == 200);
     }
     if (this.userLoggedIn) {
       this.userLogin = this.authService.isLoginUser();
@@ -50,7 +49,7 @@ export class NavBarComponent implements OnInit {
     this.authService.setLoggedIn(false);
   }
 
-  isAdminOrSuperadmin(): boolean {
+  get isAdminOrSuperadmin(): boolean {
     return ADMIN_SUPERADMIN_ROL.includes(this.userLogin.rol);
   }
 

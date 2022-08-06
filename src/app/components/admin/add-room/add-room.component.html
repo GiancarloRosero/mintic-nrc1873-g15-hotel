@@ -1,6 +1,11 @@
 <main class="w-50 mx-auto p-4 my-5">
   <h2>Agregar habitación</h2>
   <div [formGroup]="roomForm" class="div-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Código de la habitación</mat-label>
+      <input matInput type="text" name="code" formControlName="code" maxlength="30">
+    </mat-form-field>
+
     <mat-form-field class="example-form-field" appearance="fill">
       <mat-label>Nombre habitación</mat-label>
       <input matInput type="text" formControlName="name">
@@ -15,9 +20,19 @@
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Descripción completa de la habitación</mat-label>
       <textarea matInput placeholder="Habitación con dos baños privados..."
-        formControlName="descriptionShort"></textarea>
+        formControlName="descriptionLarge"></textarea>
     </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Precio por noche</mat-label>
+      <input matInput type="number" name="price" formControlName="price">
+    </mat-form-field>
+
   </div>
 
-  <app-upload-images></app-upload-images>
+  <app-upload-images (isSelectedImages)="isSelectedImages($event)" [onChargeImages]="onChargeImages"
+    [codeRoom]="codeRoom">
+  </app-upload-images>
+  <button [disabled]="!roomForm.valid || !this.childImages" mat-raised-button color="primary"
+    (click)="addRoom()">Agregar habitación</button>
 </main>

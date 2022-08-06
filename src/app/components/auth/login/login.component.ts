@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     }
     this.authService.login(user).subscribe((data) => {
       this.spinnerService.stop(spinnerRef);
-      if (data.statusCode && data.statusCode == 200) {
+      if (data.status && data.status == 200) {
         this.sessionOk = 1;
         this.snackBarService.openSnackBar("Inicio de sesión exitoso!!!");
         sessionStorage.setItem('isLogin', JSON.stringify(data))
