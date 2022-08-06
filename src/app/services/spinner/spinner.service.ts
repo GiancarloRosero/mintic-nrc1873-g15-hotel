@@ -9,7 +9,6 @@ export class SpinnerService {
 
 
   constructor(private dialog: MatDialog) {
-
   }
 
   start(message?: string): MatDialogRef<SpinnerViewComponent> {

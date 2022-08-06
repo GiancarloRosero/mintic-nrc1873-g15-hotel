@@ -6,7 +6,7 @@
         <mat-form-field class="mt-2 d-block">
           <input class="w-100" matInput placeholder="Nombres" formControlName="name" type="text">
           <mat-error *ngIf="!registerForm.get('name')?.errors?.required && (registerForm.get('name')?.errors?.pattern)">
-            Por favor, introduce tu(s) nombre(s)
+            Por favor, introduce tu(s) nombre(s) correctamente
           </mat-error>
           <mat-error
             *ngIf="registerForm.get('name')?.invalid && (registerForm.get('name')?.dirty || registerForm.get('name')?.touched) && registerForm.get('name')?.errors?.required">
@@ -19,7 +19,7 @@
           <input matInput placeholder="Apellidos" formControlName="lastName" type="text">
           <mat-error
             *ngIf="!registerForm.get('lastName')?.errors?.required && (registerForm.get('lastName')?.errors?.pattern)">
-            Por favor, introduce tu(s) nombre(s)
+            Por favor, introduce tu(s) apellido(s) correctamente
           </mat-error>
           <mat-error
             *ngIf="registerForm.get('lastName')?.invalid && (registerForm.get('lastName')?.dirty || registerForm.get('lastName')?.touched) && registerForm.get('lastName')?.errors?.required">
@@ -29,7 +29,7 @@
       </div>
       <div class="w-100 mx-auto">
         <mat-form-field class="mt-2 d-block">
-          <input matInput placeholder="Identificación" formControlName="document" type="text">
+          <input matInput placeholder="Identificación" formControlName="document" type="text" maxlength="10">
           <mat-error
             *ngIf="!registerForm.get('document')?.errors?.required && (registerForm.get('document')?.errors?.pattern)">
             Por favor, introduce tu número de identificación válido
