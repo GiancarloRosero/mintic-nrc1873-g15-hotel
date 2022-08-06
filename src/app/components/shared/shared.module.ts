@@ -20,6 +20,7 @@ import { CardHomeComponent } from './card-home/card-home.component';
 import { SpinnerViewComponent } from './spinner-view/spinner-view.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     CommentComponent,
     UploadImagesComponent,
     CardHomeComponent,
-    SpinnerViewComponent,
+    SpinnerViewComponent
   ],
   imports: [
     CommonModule,
@@ -50,6 +51,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatInputModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule
 
   ],
   exports: [

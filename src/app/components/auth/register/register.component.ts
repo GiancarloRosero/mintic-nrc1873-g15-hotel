@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserRegister } from 'src/app/models/user-register';
 import { MyErrorStateMatcher } from 'src/app/providers/custom-validators';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { SnackBarService } from 'src/app/services/snack-bar/snack-bar.service';
 import { SpinnerService } from 'src/app/services/spinner/spinner.service';
 
 @Component({
@@ -17,10 +18,10 @@ export class RegisterComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private router: Router, private authService: AuthService, private spinnerService: SpinnerService) {
+  constructor(private router: Router, private authService: AuthService, private spinnerService: SpinnerService, private snackBarService: SnackBarService) {
     this.registerForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]{1,63}$',),]),
-      lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]{1,63}$',),]),
+      name: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z- ]{1,63}$',),]),
+      lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z- ]{1,63}$',),]),
       document: new FormControl('', [Validators.required, Validators.pattern('[0-9]{1,10}$',),]),
       email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,63}$',),]),
       password: new FormControl('', [Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)]),
@@ -53,6 +54,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(user).subscribe((data) => {
       this.spinnerService.stop(spinnerRef);
       if (data.statusCode && data.statusCode == 200) {
+        this.snackBarService.openSnackBar("Registro exitoso!!!");
         this.router.navigate(['/auth/login']);
       }
     }, (_) => {

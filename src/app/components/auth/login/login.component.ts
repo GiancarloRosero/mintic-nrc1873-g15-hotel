@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserLogin } from 'src/app/models/user-login';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { SnackBarService } from 'src/app/services/snack-bar/snack-bar.service';
 import { SpinnerService } from 'src/app/services/spinner/spinner.service';
 
 
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   sessionOk: number = 0;
 
-  constructor(private router: Router, private authService: AuthService, private spinnerService: SpinnerService) {
+  constructor(private router: Router, private authService: AuthService, private spinnerService: SpinnerService, private snackBarService: SnackBarService) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,63}$',),]),
       password: new FormControl('', [Validators.required])
@@ -42,10 +43,12 @@ export class LoginComponent implements OnInit {
       this.spinnerService.stop(spinnerRef);
       if (data.statusCode && data.statusCode == 200) {
         this.sessionOk = 1;
+        this.snackBarService.openSnackBar("Inicio de sesión exitoso!!!");
         sessionStorage.setItem('isLogin', JSON.stringify(data))
         this.authService.setLoggedIn(true);
         this.router.navigate(['/']);
       } else {
+        this.snackBarService.openSnackBar("Fallo al iniciar sesión!!!");
         this.sessionOk = 2;
       }
     }, (_) => {
