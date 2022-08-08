@@ -20,7 +20,7 @@ export class RoomToListComponent implements OnInit {
 
   tiles: Tile[] = [
     { title: 'Nombre habitación', cols: 1, rows: 1 },
-    { cols: 3, rows: 3, image: 'assets/images/home/img1.jpg' },
+    { cols: 3, rows: 3, image: 'D:/Programacion/MINTIC/ciclo3/files/abc123Alpaca-PNG-Free-Download.png' },
     { description: 'Descripción habitación', cols: 1, rows: 1 },
     { txtButton: 'Ver habitación', cols: 1, rows: 1, button: 'ruta' },
   ];

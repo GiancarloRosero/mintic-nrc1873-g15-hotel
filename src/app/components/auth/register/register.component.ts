@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
     }
     this.authService.register(user).subscribe((data) => {
       this.spinnerService.stop(spinnerRef);
-      if (data.status && data.status == 200) {
+      if (data.status == 200) {
         this.snackBarService.openSnackBar("Registro exitoso!!!");
         this.router.navigate(['/auth/login']);
       }

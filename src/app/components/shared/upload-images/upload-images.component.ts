@@ -4,6 +4,10 @@ import { Observable } from 'rxjs';
 import { ENDPOINTS } from 'src/app/config/endpoints';
 import { FileUploadServiceService } from 'src/app/services/file-upload-service.service';
 import { HttpClientService } from 'src/app/services/http-client/http-client.service';
+import { SnackBarService } from 'src/app/services/snack-bar/snack-bar.service';
+import { SpinnerService } from 'src/app/services/spinner/spinner.service';
+
+const INVALIDA_DATA = [null, undefined, "", "null", "undefined"];
 
 @Component({
   selector: 'app-upload-images',
@@ -20,17 +24,15 @@ export class UploadImagesComponent implements OnInit, OnChanges {
   imagesMaxError: number = 0;
 
   @Input()
-  onChargeImages: boolean = false;
-
-  @Input()
   codeRoom: string = "";
 
   @Output()
   isSelectedImages = new EventEmitter<boolean>();
 
-  constructor(private httpClient: HttpClientService) { }
+  constructor(private spinnerService: SpinnerService, private httpClient: HttpClientService, private snackBarService: SnackBarService) { }
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.onChargeImages.currentValue) {
+    console.log(changes)
+    if (changes.codeRoom && !INVALIDA_DATA.includes(changes.codeRoom.currentValue)) {
       this.uploadFiles();
     }
   }
@@ -64,11 +66,13 @@ export class UploadImagesComponent implements OnInit, OnChanges {
       for (let i = 0; i < this.selectedFiles.length; i++) {
         this.upload(i, this.selectedFiles[i]);
       }
+      this.snackBarService.openSnackBar("Habitación agregada existosamente!!!");
     }
     this.imagesMaxError = this.selectedFiles.length;
   }
 
   upload(idx: number, file: File): void {
+    var spinnerRef = this.spinnerService.start("Cargando imagen...");
     this.progressInfos[idx] = { value: 0, fileName: file.name };
     if (file) {
       const formData: FormData = new FormData();
@@ -77,12 +81,14 @@ export class UploadImagesComponent implements OnInit, OnChanges {
       this.httpClient.post(ENDPOINTS.uploadImages, formData).subscribe(
         (result: any) => {
           if (result.status == 200) {
+            this.spinnerService.stop(spinnerRef);
             this.progressInfos[idx].value = Math.round(100 * file.size / file.size);
             const msg = 'Se cargó la imagen: ' + file.name;
             this.message.push(msg);
           }
         },
         (err: any) => {
+          this.spinnerService.stop(spinnerRef);
           this.progressInfos[idx].value = 0;
           const msg = 'Error al cargar imagen: ' + file.name;
           this.message.push(msg);

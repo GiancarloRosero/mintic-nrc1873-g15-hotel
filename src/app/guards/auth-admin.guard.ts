@@ -19,7 +19,7 @@ export class AuthAdminGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       const cookie: any = JSON.parse(this.cookieService.get("login"));
       this.redirect(cookie.rol === 2 || cookie.rol === 3);
-      return cookie.rol === 2 || cookie.rol === 3;
+      return (cookie.rol === 2 || cookie.rol === 3);
   }
   
 }

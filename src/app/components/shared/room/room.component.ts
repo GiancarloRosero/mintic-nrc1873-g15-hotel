@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ENDPOINTS } from 'src/app/config/endpoints';
+import { ImageRoom } from 'src/app/models/image-room';
+import { HttpClientService } from 'src/app/services/http-client/http-client.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-room',
@@ -15,17 +19,32 @@ export class RoomComponent implements OnInit {
   
   raitingValue: number = 2;
 
-  slides = [
-    { 'image': 'https://gsr.dev/material2-carousel/assets/demo.png' },
-    { 'image': 'https://gsr.dev/material2-carousel/assets/demo.png' },
-    { 'image': 'https://gsr.dev/material2-carousel/assets/demo.png' },
-    { 'image': 'https://gsr.dev/material2-carousel/assets/demo.png' },
-    { 'image': 'https://gsr.dev/material2-carousel/assets/demo.png' }
-  ];
+  slides: ImageRoom[] = [];
 
-  constructor() { }
+  constructor(private httpClient: HttpClientService) { }
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  loadData() {
+    const map = new Map();
+    map.set("roomId", "123");
+    this.httpClient.get<any>(ENDPOINTS.loadImagesFromRoom, map).subscribe((result:any) => {
+      if(result.status == 200) {
+        result.data.forEach((url: string) => {
+          this.slides.push({
+            image: environment.urlBase + "/room/get-image/"+url
+          });
+        })
+        
+      }
+    });
+    console.log(this.slides)
+  }
+
+  get imagesRoom():ImageRoom[] {
+    return this.slides;
   }
 
 }

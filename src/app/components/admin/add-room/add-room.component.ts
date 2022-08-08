@@ -13,7 +13,6 @@ import { SpinnerService } from 'src/app/services/spinner/spinner.service';
 })
 export class AddRoomComponent implements OnInit {
 
-  public onChargeImages: boolean = false;
   public codeRoom: string = "";
   childImages: boolean = false;
 
@@ -37,7 +36,7 @@ export class AddRoomComponent implements OnInit {
   }
 
   addRoom(): void {
-    var spinnerRef = this.spinnerService.start("Iniciando sesión...");
+    var spinnerRef = this.spinnerService.start("Agregando habitación...");
     if (!this.roomForm.valid || !this.childImages) {
       return
     }
@@ -50,11 +49,12 @@ export class AddRoomComponent implements OnInit {
     }
     this.httpClient.post(ENDPOINTS.addRoom, room).subscribe((result: any) => {
       this.spinnerService.stop(spinnerRef);
-      if(result.status = 200) {
+      if (result.status == 200) {
         // servicio para agregar imágenes result.data tiene el código de habitación
-        this.snackBarService.openSnackBar("Habitación agregada existosamente!!!");
+        this.snackBarService.openSnackBar("Habitación agregada existosamente!");
         this.codeRoom = result.data;
-        this.onChargeImages = true;
+      }else{
+        this.snackBarService.openSnackBar("Ocurrió un error");
       }
     });
   }
