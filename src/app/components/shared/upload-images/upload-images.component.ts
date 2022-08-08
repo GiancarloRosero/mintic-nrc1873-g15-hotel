@@ -31,7 +31,6 @@ export class UploadImagesComponent implements OnInit, OnChanges {
   constructor(private httpClient: HttpClientService) { }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.onChargeImages.currentValue) {
-      console.log(changes);
       this.uploadFiles();
     }
   }
@@ -76,15 +75,12 @@ export class UploadImagesComponent implements OnInit, OnChanges {
       formData.append('file', file);
       formData.append('code', this.codeRoom);
       this.httpClient.post(ENDPOINTS.uploadImages, formData).subscribe(
-        (event: any) => {
-          if (event.type === HttpEventType.UploadProgress) {
-            this.progressInfos[idx].value = Math.round(100 * event.loaded / event.total);
-          } else if (event instanceof HttpResponse) {
+        (result: any) => {
+          if (result.status == 200) {
+            this.progressInfos[idx].value = Math.round(100 * file.size / file.size);
             const msg = 'Se cargó la imagen: ' + file.name;
             this.message.push(msg);
-            // this.imageInfos = this.uploadService.getFiles();
           }
-          console.log(event)
         },
         (err: any) => {
           this.progressInfos[idx].value = 0;

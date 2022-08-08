@@ -37,6 +37,7 @@ export class AddRoomComponent implements OnInit {
   }
 
   addRoom(): void {
+    var spinnerRef = this.spinnerService.start("Iniciando sesión...");
     if (!this.roomForm.valid || !this.childImages) {
       return
     }
@@ -48,8 +49,10 @@ export class AddRoomComponent implements OnInit {
       code: this.roomForm.controls.code.value
     }
     this.httpClient.post(ENDPOINTS.addRoom, room).subscribe((result: any) => {
+      this.spinnerService.stop(spinnerRef);
       if(result.status = 200) {
         // servicio para agregar imágenes result.data tiene el código de habitación
+        this.snackBarService.openSnackBar("Habitación agregada existosamente!!!");
         this.codeRoom = result.data;
         this.onChargeImages = true;
       }
