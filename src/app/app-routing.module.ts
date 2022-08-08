@@ -1,5 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home/home-hotel.component';
+import { AuthAdminGuard } from './guards/auth-admin.guard';
+import { AuthIsLoginGuard } from './guards/auth-is-login.guard';
 
 export const routes: Routes = [
   {
@@ -15,12 +17,14 @@ export const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./components/auth/auth.module')
-      .then(m => m.AuthModule)
+      .then(m => m.AuthModule),
+      canActivate: [AuthIsLoginGuard]
   },
   {
     path: 'admin',
     loadChildren: () => import('./components/admin/admin.module')
-      .then(m => m.AdminModule)
+      .then(m => m.AdminModule),
+      canActivate: [AuthAdminGuard]
   },
   {
     path: '**',

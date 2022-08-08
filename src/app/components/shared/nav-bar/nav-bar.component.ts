@@ -1,7 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { UserLoginSucess } from 'src/app/models/user-login-success';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 const ADMIN_SUPERADMIN_ROL = [2, 3];
@@ -14,28 +12,13 @@ const INVALID_DATA = [null, undefined, "", "null", "undefined"];
 })
 export class NavBarComponent implements OnInit {
 
-  userLogin: UserLoginSucess = new UserLoginSucess();
-
-  public userLoggedIn: boolean = false;
-  private subscription: Subscription;
-
   @Output()
   public sidenavToggle = new EventEmitter();
 
   constructor(private router: Router, private authService: AuthService) {
-    this.subscription = this.authService.getLoggedIn().subscribe(value => {
-      this.userLoggedIn = value;
-    });
   }
 
   ngOnInit(): void {
-    if(!INVALID_DATA.includes(String(this.authService.isLoginUser()))) {
-      this.userLogin = this.authService.isLoginUser();
-      this.authService.setLoggedIn(this.userLogin.status == 200);
-    }
-    if (this.userLoggedIn) {
-      this.userLogin = this.authService.isLoginUser();
-    }
   }
 
   public onToggleSidenav = (): void => {
@@ -43,16 +26,16 @@ export class NavBarComponent implements OnInit {
   }
 
   closeSession(): void {
-    localStorage.clear();
-    sessionStorage.clear();
     this.router.navigate(['/']);
-    this.authService.setLoggedIn(false);
+    this.authService.closeSession();
   }
 
   get isAdminOrSuperadmin(): boolean {
-    return ADMIN_SUPERADMIN_ROL.includes(this.userLogin.rol);
+    return ADMIN_SUPERADMIN_ROL.includes(this.authService.isLoginUser().rol);
   }
 
-
+  get isLogin(): boolean {
+    return !INVALID_DATA.includes(String(this.authService.isLoginUser()));
+  }
 
 }

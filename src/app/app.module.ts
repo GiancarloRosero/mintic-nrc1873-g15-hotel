@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SharedModule } from './components/shared/shared.module';
-import { FileUploadServiceService } from './services/file-upload-service.service';
+import { CookieService } from 'ngx-cookie-service';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MatTableModule } from '@angular/material/table';
@@ -39,7 +39,9 @@ import { MatInputModule } from '@angular/material/input';
     MatSidenavModule,
     MatToolbarModule
   ],
-  providers: [],
+  providers: [
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
