@@ -126,7 +126,11 @@ export class RoomComponent implements OnInit {
     this.httpClient.get<ResponseService<AddComment>>(ENDPOINTS.getAllCommentsRoom, map).subscribe((result: ResponseService<AddComment>) => {
       if (result.status == 200) {
         this.comments = result.data;
-        this.raitingValue = (this.comments.reduce((acc, value) => { return acc + value.score }, 0)) / (this.comments.length)
+        if (result.data.length == 0) {
+          this.raitingValue = 5;
+        } else {
+          this.raitingValue = (this.comments.reduce((acc, value) => { return acc + value.score }, 0)) / (this.comments.length);
+        }
       }
       this.spinnerService.stop(spinnerRef);
     });

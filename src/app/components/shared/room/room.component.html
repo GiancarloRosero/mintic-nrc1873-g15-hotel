@@ -69,7 +69,7 @@
 
       </textarea>
       <div class="div-btn-send">
-        <button class="btn-send" mat-raised-button color="primary" (click)="addComment()">Enviar</button>
+        <button class="btn-send" mat-raised-button color="primary" [disabled]="commentForm.invalid" (click)="addComment()">Enviar</button>
       </div>
     </div>
     <div class="comments">
