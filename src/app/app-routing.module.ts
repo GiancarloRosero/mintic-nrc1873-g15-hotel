@@ -27,6 +27,11 @@ export const routes: Routes = [
       canActivate: [AuthAdminGuard]
   },
   {
+    path: 'guest',
+    loadChildren: () => import('./components/guest/guest.module')
+      .then(m => m.GuestModule)
+  },
+  {
     path: '**',
     component: HomeComponent
   },

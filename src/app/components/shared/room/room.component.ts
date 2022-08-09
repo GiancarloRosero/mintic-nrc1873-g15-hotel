@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ENDPOINTS } from 'src/app/config/endpoints';
 import { AddComment } from 'src/app/models/add-comment';
 import { ImageRoom } from 'src/app/models/image-room';
@@ -43,7 +43,8 @@ export class RoomComponent implements OnInit {
   comments: AddComment[] = [];
 
   constructor(private httpClient: HttpClientService, private activatedRoute: ActivatedRoute,
-    private spinnerService: SpinnerService, private snackBar: SnackBarService, private authService: AuthService) {
+    private spinnerService: SpinnerService, private snackBar: SnackBarService, private authService: AuthService,
+    private router: Router) {
     this.codeRoomParam = String(this.activatedRoute.snapshot.paramMap.get('id'));
   }
 
@@ -123,6 +124,10 @@ export class RoomComponent implements OnInit {
       }
       this.spinnerService.stop(spinnerRef);
     });
+  }
+
+  reserve(): void {
+    this.router.navigate(['guest/booking']);
   }
 
 }

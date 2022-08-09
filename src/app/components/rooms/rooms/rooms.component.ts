@@ -20,8 +20,7 @@ export class RoomsComponent implements OnInit {
   constructor(private httpClient: HttpClientService, private spinnerService: SpinnerService) {
     this.bookForm = new FormGroup({
       dateStart: new FormControl('', [Validators.required]),
-      dateEnd: new FormControl('', [Validators.required]),
-      guestNumber: new FormControl('', [Validators.required, Validators.min(0), Validators.max(6)])
+      dateEnd: new FormControl('', [Validators.required])
     });
   }
 

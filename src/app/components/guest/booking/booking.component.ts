@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-booking',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookingComponent implements OnInit {
 
-  constructor() { }
+  bookForm: FormGroup;
+
+  constructor() {
+    this.bookForm = new FormGroup({
+      dateStart: new FormControl('', [Validators.required]),
+      dateEnd: new FormControl('', [Validators.required])
+    });
+  }
 
   ngOnInit(): void {
+  }
+
+  reserve(): void {
+    console.log(this.bookForm.controls.dateStart.value)
+    console.log(this.bookForm.controls.dateEnd.value)
   }
 
 }

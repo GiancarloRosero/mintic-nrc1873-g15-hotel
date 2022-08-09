@@ -2,6 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BookingComponent } from './booking/booking.component';
 import { HistoricalComponent } from './historical/historical.component';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { GuestRoutingModule } from './guest-routing.module';
+import { MatNativeDateModule, } from '@angular/material/core';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -11,7 +17,16 @@ import { HistoricalComponent } from './historical/historical.component';
     HistoricalComponent
   ],
   imports: [
-    CommonModule
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    GuestRoutingModule,
+    // Angular material
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonModule
+
   ]
 })
 export class GuestModule { }
