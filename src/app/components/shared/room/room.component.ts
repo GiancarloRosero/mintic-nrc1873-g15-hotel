@@ -22,6 +22,8 @@ const INVALID_DATA = [null, undefined, "", "null", "undefined"];
 })
 export class RoomComponent implements OnInit {
 
+  public canAddCommentUser: boolean = false;
+
   bookForm: FormGroup;
 
   commentForm = new FormGroup({
@@ -71,16 +73,20 @@ export class RoomComponent implements OnInit {
           });
         });
       }
+      this.spinnerService.stop(spinnerRef);
     });
     this.httpClient.get<ResponseServiceSingle<Room>>(ENDPOINTS.getRoomDetail, map).subscribe((result: ResponseServiceSingle<Room>) => {
-      if (result.status = 200) {
+      if (result.status == 200) {
         this.name = result.data.name;
         this.descriptionLarge = result.data.descriptionLarge;
         this.descriptionShort = result.data.descriptionShort;
         this.price = result.data.price;
+        this.canAddComment();
+        this.loadComments();
+      } else {
+        this.router.navigate(['/rooms']);
       }
       this.spinnerService.stop(spinnerRef);
-      this.loadComments();
     })
   }
 
@@ -98,12 +104,26 @@ export class RoomComponent implements OnInit {
     return !INVALID_DATA.includes(String(this.authService.isLoginUser()));
   }
 
+  canAddComment(): void {
+    const map = new Map();
+    map.set("userId", this.dataUser.id);
+    map.set("roomCode", this.codeRoomParam);
+    this.httpClient.get(ENDPOINTS.canAddComment, map).subscribe((result: any) => {
+      if (result.status == 200) {
+        this.canAddCommentUser = true;
+      } else {
+        this.canAddCommentUser = false;
+      }
+    });
+  }
+
   addComment(): void {
     var spinnerRef = this.spinnerService.start("Agregando comentario...");
     if (!this.isLogin) {
       return;
     }
     const addComment: AddComment = {
+      id: 0,
       userId: this.dataUser.id,
       roomCode: this.codeRoomParam,
       score: this.commentForm.controls.rating.value,
@@ -114,6 +134,9 @@ export class RoomComponent implements OnInit {
     this.httpClient.post(ENDPOINTS.addComment, addComment).subscribe((result: any) => {
       if (result.status == 200) {
         this.snackBar.openSnackBar("Comentario agregado satisfactorialmente!");
+        this.commentForm.controls.comment.setValue('');
+        this.commentForm.controls.rating.setValue('');
+        this.loadData();
       }
       this.spinnerService.stop(spinnerRef);
     });
@@ -137,7 +160,7 @@ export class RoomComponent implements OnInit {
   }
 
   reserve(): void {
-    var spinnerRef = this.spinnerService.start("Intentando reservar...");
+    var spinnerRef = this.spinnerService.start("Reservando habitación...");
     if (!this.bookForm.valid) {
       return;
     }

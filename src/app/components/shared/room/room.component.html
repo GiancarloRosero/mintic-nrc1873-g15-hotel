@@ -34,7 +34,8 @@
             </mat-date-range-picker-actions>
           </mat-date-range-picker>
         </mat-form-field>
-        <button mat-raised-button color="primary" (click)="reserve()">RESERVAR HABITACIÓN</button>
+        <button mat-raised-button color="primary" [disabled]="bookForm.invalid" (click)="reserve()">RESERVAR
+          HABITACIÓN</button>
       </div>
     </div>
 
@@ -59,7 +60,7 @@
 
     <hr />
 
-    <div *ngIf="isLogin" [formGroup]="commentForm" class="add-comment">
+    <div *ngIf="isLogin && canAddCommentUser" [formGroup]="commentForm" class="add-comment">
       <h3>Agregar comentario</h3>
       <span>
         <h4>Calificación:</h4>
@@ -69,7 +70,8 @@
 
       </textarea>
       <div class="div-btn-send">
-        <button class="btn-send" mat-raised-button color="primary" [disabled]="commentForm.invalid" (click)="addComment()">Enviar</button>
+        <button class="btn-send" mat-raised-button color="primary" [disabled]="commentForm.invalid"
+          (click)="addComment()">Enviar</button>
       </div>
     </div>
     <div class="comments">
