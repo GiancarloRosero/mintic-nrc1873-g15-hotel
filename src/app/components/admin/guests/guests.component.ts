@@ -5,6 +5,7 @@ import { Guest } from 'src/app/models/guest';
 import { ResponseService } from 'src/app/models/response-service';
 import { UserList } from 'src/app/models/user-list';
 import { HttpClientService } from 'src/app/services/http-client/http-client.service';
+import { SpinnerService } from 'src/app/services/spinner/spinner.service';
 
 
 @Component({
@@ -19,21 +20,23 @@ export class GuestsComponent implements OnInit {
   @ViewChild(MatTable)
   dataSource!: MatTable<Guest>;
 
-  columnas: string[] = ['id', 'document', 'fullName', 'email', 'role', 'borrar', 'editar'];
+  columnas: string[] = ['document', 'fullName', 'email', 'role', 'borrar', 'editar'];
 
   datos: Guest[] = [];
 
-  constructor(private httpClient: HttpClientService) { }
+  constructor(private httpClient: HttpClientService, private spinner: SpinnerService) { }
 
   ngOnInit(): void {
     this.loadData();
   }
 
   loadData(): void {
-    this.httpClient.get<ResponseService<UserList>>(ENDPOINTS.getAllUsers).subscribe((result: ResponseService<UserList>) => {
+    const spinner = this.spinner.start("Cargando listado de clientes...");
+    this.httpClient.get<ResponseService<UserList>>(ENDPOINTS.getAllUsersFromAdmin).subscribe((result: ResponseService<UserList>) => {
       if (result.status == 200) {
         this.datos = result.data;
       }
+      this.spinner.stop(spinner);
     });
   }
 

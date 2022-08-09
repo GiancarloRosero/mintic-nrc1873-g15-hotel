@@ -2,18 +2,18 @@
     width: 100%;
 }
 
-.mat-column-id {
-    width: 32px;
+.mat-column-document {
+    width: auto;
     border-right: 1px solid currentColor;
-    padding-right: 24px;
-    text-align: center;
+    padding-left: 1px;
 }
 
-.mat-column-document {
+/* .mat-column-document {
     padding-left: 16px;
-}
+} */
 
 .mat-column-fullName {
+    padding-left: 24px;
     font-style: initial;
 }
 
