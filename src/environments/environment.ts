@@ -7,7 +7,7 @@ const HOST_LOCAL = "http://localhost:5000";
 
 export const environment = {
   production: false,
-  urlBase: HOST_LOCAL
+  urlBase: HOST
 };
 
 /*
