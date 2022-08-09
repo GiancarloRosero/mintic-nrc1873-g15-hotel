@@ -1,6 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { ENDPOINTS } from 'src/app/config/endpoints';
+import { Guest } from 'src/app/models/guest';
 import { ResponseService } from 'src/app/models/response-service';
 import { UserList } from 'src/app/models/user-list';
 import { HttpClientService } from 'src/app/services/http-client/http-client.service';
@@ -12,11 +13,16 @@ import { HttpClientService } from 'src/app/services/http-client/http-client.serv
 })
 export class GuestsComponent implements OnInit {
 
-  constructor(private httpClient: HttpClientService) { }
+  articuloselect: Guest = new Guest("", "", "", "", "");
+
+  @ViewChild(MatTable)
+  dataSource!: MatTable<Guest>;
 
   columnas: string[] = ['id', 'document', 'fullName', 'email', 'role', 'borrar', 'editar'];
 
   datos: Guest[] = [];
+
+  constructor(private httpClient: HttpClientService) { }
 
   ngOnInit(): void {
     this.loadData();
@@ -30,31 +36,17 @@ export class GuestsComponent implements OnInit {
     });
   }
 
-
-  articuloselect: Guest = new Guest("", "", "", "", "");
-
-  @ViewChild(MatTable) tabla1!: MatTable<Guest>;
-
-  editarFila(cod: number) {
-
+  editarFila(cod: number): void {
   }
 
-  borrarFila(cod: number) {
+  borrarFila(cod: number): void {
     if (confirm("¿Realmente quiere borrarlo?")) {
       this.datos.splice(cod, 1);
-      this.tabla1.renderRows();
+      this.dataSource.renderRows();
     }
   }
 
-  agregar() {
-
+  agregar(): void {
   }
+
 }
-
-
-
-export class Guest {
-  constructor(public id: string, public document: string, public fullName: string, public email: string, public role: string) {
-  }
-}
-
