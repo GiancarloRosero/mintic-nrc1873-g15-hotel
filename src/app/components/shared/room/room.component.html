@@ -6,7 +6,7 @@
       <mat-card-subtitle>{{descriptionShort}}</mat-card-subtitle> <br />
       <span>Calificación</span>
       <star-rating-control [readOnly]="true" [hoverEnabled]="true" [rating]="raitingValue"></star-rating-control>
-      <span>Precio: <strong>{{price}}</strong></span>
+      <span>Precio: <strong>{{price | currency: 'CO'}}</strong></span>
     </mat-card-header>
     <div [style.height]="'auto'">
       <mat-carousel *ngIf="imagesRoom[0] && imagesRoom[0].image" timings="250ms ease-in" [autoplay]="false"
