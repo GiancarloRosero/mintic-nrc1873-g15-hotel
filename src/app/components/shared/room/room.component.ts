@@ -2,11 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ENDPOINTS } from 'src/app/config/endpoints';
+import { AddComment } from 'src/app/models/add-comment';
 import { ImageRoom } from 'src/app/models/image-room';
 import { ResponseService, ResponseServiceSingle } from 'src/app/models/response-service';
 import { Room } from 'src/app/models/room';
+import { UserLoginSucess } from 'src/app/models/user-login-success';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpClientService } from 'src/app/services/http-client/http-client.service';
+import { SnackBarService } from 'src/app/services/snack-bar/snack-bar.service';
+import { SpinnerService } from 'src/app/services/spinner/spinner.service';
 import { environment } from 'src/environments/environment';
+
+const INVALID_DATA = [null, undefined, "", "null", "undefined"];
 
 @Component({
   selector: 'app-room',
@@ -19,7 +26,7 @@ export class RoomComponent implements OnInit {
     comment: new FormControl('', [Validators.required]),
     rating: new FormControl('', [Validators.required])
   });
-  
+
   raitingValue: number = 0;
 
   slides: ImageRoom[] = [];
@@ -31,39 +38,75 @@ export class RoomComponent implements OnInit {
   descriptionShort: string = "";
   price: number = 0;
 
-  constructor(private httpClient: HttpClientService, private activatedRoute: ActivatedRoute) {
+  dataUser: UserLoginSucess;
+
+  constructor(private httpClient: HttpClientService, private activatedRoute: ActivatedRoute,
+    private spinnerService: SpinnerService, private snackBar: SnackBarService, private authService: AuthService) {
     this.codeRoomParam = String(this.activatedRoute.snapshot.paramMap.get('id'));
   }
 
   ngOnInit(): void {
     this.loadData();
+    this.loadDataUser();
   }
 
   loadData() {
+    var spinnerRef = this.spinnerService.start("Cargando detalle de habitación...");
     const map = new Map();
     map.set("roomCode", this.codeRoomParam);
-    this.httpClient.get<ResponseService<String>>(ENDPOINTS.loadImagesFromRoom, map).subscribe((result:ResponseService<String>) => {
-      if(result.status == 200) {
+    this.httpClient.get<ResponseService<String>>(ENDPOINTS.loadImagesFromRoom, map).subscribe((result: ResponseService<String>) => {
+      if (result.status == 200) {
         result.data.forEach((url) => {
           this.slides.push({
-            image: environment.urlBase + "/room/get-image/"+url
+            image: environment.urlBase + "/room/get-image/" + url
           });
         });
       }
     });
     this.httpClient.get<ResponseServiceSingle<Room>>(ENDPOINTS.getRoomDetail, map).subscribe((result: ResponseServiceSingle<Room>) => {
-      if(result.status = 200) {
+      if (result.status = 200) {
         this.name = result.data.name;
         this.raitingValue = Number(result.data.score)
         this.descriptionLarge = result.data.descriptionLarge;
         this.descriptionShort = result.data.descriptionShort;
         this.price = result.data.price;
       }
+      this.spinnerService.stop(spinnerRef);
     })
   }
 
-  get imagesRoom():ImageRoom[] {
+  get imagesRoom(): ImageRoom[] {
     return this.slides;
+  }
+
+  loadDataUser(): void {
+    if (this.isLogin) {
+      this.dataUser = this.authService.isLoginUser();
+    }
+  }
+
+  get isLogin(): boolean {
+    return !INVALID_DATA.includes(String(this.authService.isLoginUser()));
+  }
+
+  addComment(): void {
+    var spinnerRef = this.spinnerService.start("Agregando comentario...");
+    if (!this.isLogin) {
+      return;
+    }
+    const addComment: AddComment = {
+      userId: this.dataUser.id,
+      roomCode: this.codeRoomParam,
+      score: this.commentForm.controls.rating.value,
+      comment: this.commentForm.controls.comment.value
+    };
+
+    this.httpClient.post(ENDPOINTS.addComment, addComment).subscribe((result: any) => {
+      if (result.status == 200) {
+        this.snackBar.openSnackBar("Comentario agregado satisfactorialmente!");
+      }
+      this.spinnerService.stop(spinnerRef);
+    });
   }
 
 }

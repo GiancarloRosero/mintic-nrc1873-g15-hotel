@@ -39,7 +39,7 @@
 
     <hr/>
 
-    <div [formGroup]="commentForm" class="add-comment">
+    <div *ngIf="isLogin" [formGroup]="commentForm" class="add-comment">
       <h3>Agregar comentario</h3>
       <span><h4>Calificación:</h4></span>
       <star-rating-control [hoverEnabled]="true" formControlName="rating"></star-rating-control>
@@ -47,7 +47,7 @@
 
       </textarea>
       <div class="div-btn-send">
-        <button class="btn-send" mat-raised-button color="primary">Enviar</button>
+        <button class="btn-send" mat-raised-button color="primary" (click)="addComment()" >Enviar</button>
       </div>
     </div>
     <div class="comments">
