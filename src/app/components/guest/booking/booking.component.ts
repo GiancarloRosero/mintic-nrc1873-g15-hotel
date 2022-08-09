@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ENDPOINTS } from 'src/app/config/endpoints';
+import { HttpClientService } from 'src/app/services/http-client/http-client.service';
 
 @Component({
   selector: 'app-booking',
@@ -8,21 +11,18 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class BookingComponent implements OnInit {
 
-  bookForm: FormGroup;
+  roomCode: string = "";
+  userId: number;
 
-  constructor() {
-    this.bookForm = new FormGroup({
-      dateStart: new FormControl('', [Validators.required]),
-      dateEnd: new FormControl('', [Validators.required])
+  constructor(private httpClient: HttpClientService, private activatedRouter: ActivatedRoute) {
+    this.activatedRouter.queryParams.subscribe((data: any) => {
+      this.userId = JSON.parse(data.data).userId;
+      this.roomCode = JSON.parse(data.data).roomCode;
     });
   }
 
   ngOnInit(): void {
   }
 
-  reserve(): void {
-    console.log(this.bookForm.controls.dateStart.value)
-    console.log(this.bookForm.controls.dateEnd.value)
-  }
 
 }

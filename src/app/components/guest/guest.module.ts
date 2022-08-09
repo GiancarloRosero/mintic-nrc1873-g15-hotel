@@ -22,9 +22,6 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     GuestRoutingModule,
     // Angular material
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
     MatButtonModule
 
   ]

@@ -22,6 +22,8 @@ const INVALID_DATA = [null, undefined, "", "null", "undefined"];
 })
 export class RoomComponent implements OnInit {
 
+  bookForm: FormGroup;
+
   commentForm = new FormGroup({
     comment: new FormControl('', [Validators.required]),
     rating: new FormControl('', [Validators.required])
@@ -46,6 +48,10 @@ export class RoomComponent implements OnInit {
     private spinnerService: SpinnerService, private snackBar: SnackBarService, private authService: AuthService,
     private router: Router) {
     this.codeRoomParam = String(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.bookForm = new FormGroup({
+      dateStart: new FormControl('', [Validators.required]),
+      dateEnd: new FormControl('', [Validators.required])
+    });
   }
 
   ngOnInit(): void {
@@ -120,14 +126,31 @@ export class RoomComponent implements OnInit {
     this.httpClient.get<ResponseService<AddComment>>(ENDPOINTS.getAllCommentsRoom, map).subscribe((result: ResponseService<AddComment>) => {
       if (result.status == 200) {
         this.comments = result.data;
-        this.raitingValue = (this.comments.reduce((acc, value) => {return acc + value.score}, 0)) /(this.comments.length)
+        this.raitingValue = (this.comments.reduce((acc, value) => { return acc + value.score }, 0)) / (this.comments.length)
       }
       this.spinnerService.stop(spinnerRef);
     });
   }
 
   reserve(): void {
-    this.router.navigate(['guest/booking']);
+    var spinnerRef = this.spinnerService.start("Intentando reservar...");
+    if (!this.bookForm.valid) {
+      return;
+    }
+    const booking = {
+      userId: this.dataUser.id,
+      roomCode: this.codeRoomParam,
+      startDate: this.bookForm.controls.dateStart.value,
+      endDate: this.bookForm.controls.dateEnd.value,
+    }
+    this.httpClient.post(ENDPOINTS.reserveRoom, booking).subscribe((result: any) => {
+      if (result.status == 200) {
+        this.snackBar.openSnackBar("Habitación reservada exitosamente!");
+      } else if (result.status == 406) {
+        this.snackBar.openSnackBar("No esta disponible en las fechas seleccionadas!");
+      }
+      this.spinnerService.stop(spinnerRef);
+    })
   }
 
 }
