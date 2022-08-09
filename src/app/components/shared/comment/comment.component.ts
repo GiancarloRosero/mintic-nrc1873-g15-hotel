@@ -10,7 +10,13 @@ import { ClickEvent, HoverRatingChangeEvent, RatingChangeEvent } from 'angular-s
 export class CommentComponent implements OnInit {
 
   @Input()
-  raitingValue: number = 2;
+  raitingValue: number = 0;
+
+  @Input()
+  fullName: string = "";
+
+  @Input()
+  comment: string = "";
 
   commentsForm = new FormGroup({
     rating: new FormControl('')

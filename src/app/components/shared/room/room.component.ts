@@ -40,6 +40,8 @@ export class RoomComponent implements OnInit {
 
   dataUser: UserLoginSucess;
 
+  comments: AddComment[] = [];
+
   constructor(private httpClient: HttpClientService, private activatedRoute: ActivatedRoute,
     private spinnerService: SpinnerService, private snackBar: SnackBarService, private authService: AuthService) {
     this.codeRoomParam = String(this.activatedRoute.snapshot.paramMap.get('id'));
@@ -66,12 +68,12 @@ export class RoomComponent implements OnInit {
     this.httpClient.get<ResponseServiceSingle<Room>>(ENDPOINTS.getRoomDetail, map).subscribe((result: ResponseServiceSingle<Room>) => {
       if (result.status = 200) {
         this.name = result.data.name;
-        this.raitingValue = Number(result.data.score)
         this.descriptionLarge = result.data.descriptionLarge;
         this.descriptionShort = result.data.descriptionShort;
         this.price = result.data.price;
       }
       this.spinnerService.stop(spinnerRef);
+      this.loadComments();
     })
   }
 
@@ -98,12 +100,26 @@ export class RoomComponent implements OnInit {
       userId: this.dataUser.id,
       roomCode: this.codeRoomParam,
       score: this.commentForm.controls.rating.value,
-      comment: this.commentForm.controls.comment.value
+      comment: this.commentForm.controls.comment.value,
+      userFullName: ""
     };
 
     this.httpClient.post(ENDPOINTS.addComment, addComment).subscribe((result: any) => {
       if (result.status == 200) {
         this.snackBar.openSnackBar("Comentario agregado satisfactorialmente!");
+      }
+      this.spinnerService.stop(spinnerRef);
+    });
+  }
+
+  loadComments(): void {
+    var spinnerRef = this.spinnerService.start("Cargando comentarios...");
+    const map = new Map();
+    map.set("roomCode", this.codeRoomParam);
+    this.httpClient.get<ResponseService<AddComment>>(ENDPOINTS.getAllCommentsRoom, map).subscribe((result: ResponseService<AddComment>) => {
+      if (result.status == 200) {
+        this.comments = result.data;
+        this.raitingValue = (this.comments.reduce((acc, value) => {return acc + value.score}, 0)) /(this.comments.length)
       }
       this.spinnerService.stop(spinnerRef);
     });

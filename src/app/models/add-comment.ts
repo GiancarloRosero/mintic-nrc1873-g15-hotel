@@ -3,4 +3,5 @@ export class AddComment {
   roomCode: string;
   score: number;
   comment: string;
+  userFullName: string = "";
 }
