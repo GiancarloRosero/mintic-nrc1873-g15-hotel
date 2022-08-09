@@ -1,29 +1,29 @@
 <main>
   <table mat-table [dataSource]="datos" class="mat-elevation-z8" #tabla1>
 
-    <ng-container matColumnDef="tipoDoc">
-      <th mat-header-cell *matHeaderCellDef> Tipo de documento </th>
-      <td mat-cell *matCellDef="let persona"> {{persona.tipoDoc}} </td>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> id </th>
+      <td mat-cell *matCellDef="let persona"> {{persona.id}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="numId">
+    <ng-container matColumnDef="document">
       <th mat-header-cell *matHeaderCellDef> Numero de identificación </th>
-      <td mat-cell *matCellDef="let persona"> {{persona.numId}} </td>
+      <td mat-cell *matCellDef="let persona"> {{persona.document}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="nombre">
+    <ng-container matColumnDef="fullName">
       <th mat-header-cell *matHeaderCellDef> Nombre </th>
-      <td mat-cell *matCellDef="let persona"> {{persona.nombre}} </td>
+      <td mat-cell *matCellDef="let persona"> {{persona.fullName}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="celular">
-      <th mat-header-cell *matHeaderCellDef> Celular </th>
-      <td mat-cell *matCellDef="let persona"> {{persona.celular}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="correo">
+    <ng-container matColumnDef="email">
       <th mat-header-cell *matHeaderCellDef> Correo </th>
-      <td mat-cell *matCellDef="let persona"> {{persona.correo}} </td>
+      <td mat-cell *matCellDef="let persona"> {{persona.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef> Rol </th>
+      <td mat-cell *matCellDef="let persona"> {{persona.role}} </td>
     </ng-container>
 
     <ng-container matColumnDef="borrar">

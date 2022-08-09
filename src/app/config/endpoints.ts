@@ -15,4 +15,6 @@ export const ENDPOINTS = {
 
     uploadImages: new Endpoint(URL_BASE, "room/add-images-room"),
     loadImagesFromRoom: new Endpoint(URL_BASE, "room/get-all-images/files/{roomId}"),
+
+    getAllUsers:new Endpoint(URL_BASE,"user/get-all-users")
 }
