@@ -16,8 +16,12 @@ export const ENDPOINTS = {
     reserveRoom: new Endpoint(URL_BASE, "room/reserve"),
 
     uploadImages: new Endpoint(URL_BASE, "room/add-images-room"),
+
+    getAllUsers:new Endpoint(URL_BASE,"user/get-all-users")
+
     loadImagesFromRoom: new Endpoint(URL_BASE, "room/get-all-images/files/{roomCode}"),
 
     addComment: new Endpoint(URL_BASE, "room/add-room-comment"),
     getAllCommentsRoom: new Endpoint(URL_BASE, "room/get-room-comments/{roomCode}")
+
 }
