@@ -26,8 +26,8 @@ export class NavBarComponent implements OnInit {
   }
 
   closeSession(): void {
-    this.router.navigate(['/']);
     this.authService.closeSession();
+    this.router.navigate(['/']);
   }
 
   get isAdminOrSuperadmin(): boolean {

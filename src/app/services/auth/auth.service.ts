@@ -33,6 +33,9 @@ export class AuthService {
   }
 
   closeSession(): void {
+    console.log("entra");
+    this.cookieService.delete("login");
+    this.cookieService.delete("admin");
     this.cookieService.deleteAll();
   }
 

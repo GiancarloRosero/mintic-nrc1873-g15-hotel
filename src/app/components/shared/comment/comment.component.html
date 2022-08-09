@@ -1,7 +1,7 @@
 <mat-card class="example-card">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Nombre usuario</mat-card-title>
+    <mat-card-title>{{fullName}}</mat-card-title>
   </mat-card-header>
   <div [formGroup]="commentsForm">
     <div class="div-rating">
@@ -13,7 +13,7 @@
   </div>
   <mat-card-content>
     <p>
-      Comentario que ya viene en la habitación con calificación
+      {{comment}}
     </p>
   </mat-card-content>
 </mat-card>
