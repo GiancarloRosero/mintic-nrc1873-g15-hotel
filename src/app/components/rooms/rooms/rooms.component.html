@@ -33,7 +33,7 @@
   </div>
   <div>
     <app-room-to-list *ngFor="let room of listRoom" [description]="room.descriptionShort" [title]="room.name"
-      [image]="room.image">
+      [image]="room.image" [codeRoom]="room.code">
     </app-room-to-list>
   </div>
 </main>

@@ -2,10 +2,11 @@
   <mat-card class="example-card">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Nombre habitación</mat-card-title>
-      <mat-card-subtitle>Descripción corta de la habitación</mat-card-subtitle>
+      <mat-card-title>{{name}}</mat-card-title>
+      <mat-card-subtitle>{{descriptionShort}}</mat-card-subtitle> <br/>
       <span>Calificación</span>
       <star-rating-control [readOnly]="true" [hoverEnabled]="true" [rating]="raitingValue"></star-rating-control>
+      <span>Precio: <strong>{{price}}</strong></span>
     </mat-card-header>
     <div [style.height]="'auto'">
       
@@ -22,17 +23,17 @@
     <mat-card-content>
       <ul>
         <li>
-          <mat-icon>bed</mat-icon>
+          <mat-icon>bed</mat-icon> <strong> Incluído</strong>
         </li>
         <li>
-          <mat-icon>wifi</mat-icon>
+          <mat-icon>wifi</mat-icon> <strong> Incluído</strong>
         </li>
         <li>
-          <mat-icon>restaurant</mat-icon>
+          <mat-icon>restaurant</mat-icon> <strong> Incluído</strong>
         </li>
       </ul>
       <p>
-        Descripción larga de la habitación
+        {{descriptionLarge}}
       </p>
     </mat-card-content>
 

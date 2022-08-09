@@ -3,3 +3,9 @@ export class ResponseService<T> {
     message: string;
     status: number;
 }
+
+export class ResponseServiceSingle<T> {
+    data: T;
+    message: string;
+    status: number;
+}
