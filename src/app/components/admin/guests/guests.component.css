@@ -1,14 +1,36 @@
-table {
-    width: 90%;
-    margin:1rem auto;
- }
-
- .contenedor {
-    display: flex;
-    flex-direction: column;
-    margin:1rem auto;
-    max-width: 600px;
-    box-shadow: -1px 3px 66px 0px rgba(0,0,0,0.75);
-    padding: 1rem;
+.demo-table {
+    width: 100%;
 }
 
+.mat-column-id {
+    width: 32px;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
+}
+
+.mat-column-document {
+    padding-left: 16px;
+}
+
+.mat-column-fullName {
+    font-style: initial;
+}
+
+.mat-column-email {
+    width: 32px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.mat-column-role {
+    text-align: left;
+}
+
+.mat-column-borrar {
+    text-align: left;
+}
+
+.mat-column-editar {
+    text-align: left;
+}
