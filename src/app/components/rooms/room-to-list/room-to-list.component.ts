@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 export interface Tile {
   button?: string;
@@ -18,10 +19,19 @@ export interface Tile {
 })
 export class RoomToListComponent implements OnInit {
 
+  @Input()
+  title: string = "";
+  
+  @Input()
+  image: string = "";
+
+  @Input()
+  description: string = "";
+
   tiles: Tile[] = [
-    { title: 'Nombre habitación', cols: 1, rows: 1 },
-    { cols: 3, rows: 3, image: 'D:/Programacion/MINTIC/ciclo3/files/abc123Alpaca-PNG-Free-Download.png' },
-    { description: 'Descripción habitación', cols: 1, rows: 1 },
+    { title: this.title, cols: 1, rows: 1 },
+    { cols: 3, rows: 3, image: this.image },
+    { description: this.description, cols: 1, rows: 1 },
     { txtButton: 'Ver habitación', cols: 1, rows: 1, button: 'ruta' },
   ];
 
@@ -32,6 +42,14 @@ export class RoomToListComponent implements OnInit {
 
   viewRoom(): void {
     this.router.navigate(['/rooms/room', 1])
+  }
+
+  get contentRooms() {
+    this.tiles[0].title = this.title;
+    this.tiles[1].image = environment.urlBase + "/room/get-image/"+ this.image;
+    this.tiles[2].description = this.description;
+    
+    return this.tiles;
   }
 
 }

@@ -4,4 +4,6 @@ export class Room {
     descriptionLarge: string;
     price: number;
     code: string;
+    score?: number;
+    image: string = "";
 }

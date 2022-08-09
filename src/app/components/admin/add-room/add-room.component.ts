@@ -45,7 +45,8 @@ export class AddRoomComponent implements OnInit {
       descriptionShort: this.roomForm.controls.descriptionShort.value,
       descriptionLarge: this.roomForm.controls.descriptionLarge.value,
       price: Number(this.roomForm.controls.price.value),
-      code: this.roomForm.controls.code.value
+      code: this.roomForm.controls.code.value,
+      image: ""
     }
     this.httpClient.post(ENDPOINTS.addRoom, room).subscribe((result: any) => {
       this.spinnerService.stop(spinnerRef);
