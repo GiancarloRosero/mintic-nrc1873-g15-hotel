@@ -19,6 +19,8 @@ export class RoomsComponent implements OnInit {
 
   listRoom: Room[] = [];
 
+  minDate = new Date();
+
   constructor(private httpClient: HttpClientService, private spinnerService: SpinnerService,
     private datePipe: DatePipe) {
     this.bookForm = new FormGroup({
