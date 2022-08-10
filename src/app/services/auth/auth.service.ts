@@ -6,6 +6,7 @@ import { HttpClientService } from '../http-client/http-client.service';
 import { ENDPOINTS } from 'src/app/config/endpoints';
 import { UserRegister } from 'src/app/models/user-register';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -34,9 +35,9 @@ export class AuthService {
 
   closeSession(): void {
     console.log("entra");
-    this.cookieService.delete("login");
-    this.cookieService.delete("admin");
-    this.cookieService.deleteAll();
+    this.cookieService.delete("login", "/");
+    this.cookieService.delete("admin", "/");
+    this.cookieService.deleteAll("/", environment.urlBase);
   }
 
 }

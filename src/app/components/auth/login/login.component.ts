@@ -50,14 +50,15 @@ export class LoginComponent implements OnInit {
         this.sessionOk = 1;
         this.snackBarService.openSnackBar("Inicio de sesión exitoso!!!");
         this.cookieService.set('login', JSON.stringify(data), 1, '/');
+        this.router.navigate(['/']);
         if (data.rol == 2 || data.rol == 3) {
           this.cookieService.set('admin', JSON.stringify(data.rol), 1, '/admin');
+          this.router.navigate(['/']);
         }
       } else {
         this.snackBarService.openSnackBar("Fallo al iniciar sesión!!!");
         this.sessionOk = 2;
       }
-      this.router.navigate(['/'])
     }, (_) => {
       this.spinnerService.stop(spinnerRef);
     });
