@@ -50,7 +50,6 @@ export class RoomsComponent implements OnInit {
     headers = headers.set('startDate', String(startDate));
     headers = headers.set('endDate', String(endDate));
     var spinnerRef = this.spinnerService.start("Cargando listado de habitaciones...");
-    console.log(headers)
     this.httpClient.get<ResponseService<Room>>(ENDPOINTS.getAllRoomsBetween, undefined, { headers }).subscribe((result: ResponseService<Room>) => {
       if (result.status == 200) {
         this.listRoom = result.data;
