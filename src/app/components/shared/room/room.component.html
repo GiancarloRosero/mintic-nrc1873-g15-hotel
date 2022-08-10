@@ -76,8 +76,9 @@
     </div>
     <div class="comments">
       <h3>{{comments.length}} comentarios</h3>
-      <app-comment *ngFor="let comment of comments" [raitingValue]="comment.score" [fullName]="comment.userFullName"
-        [comment]="comment.comment">
+      <app-comment class="comment" *ngFor="let comment of comments" [raitingValue]="comment.score" [fullName]="comment.userFullName"
+        [comment]="comment.comment" [userId]="dataUser.id" [commentUserId]="comment.userId" [idComment]="comment.id"
+        (commentDeleted)="reloadRoomDetail($event)">
       </app-comment>
     </div>
   </mat-card>

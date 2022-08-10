@@ -180,4 +180,10 @@ export class RoomComponent implements OnInit {
     })
   }
 
+  reloadRoomDetail(value: boolean): void {
+    if(value) {
+      this.loadData();
+    }
+  }
+
 }
