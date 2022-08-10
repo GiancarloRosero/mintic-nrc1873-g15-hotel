@@ -10,8 +10,9 @@
     </mat-card-header>
     <div [style.height]="'auto'">
       <mat-carousel *ngIf="imagesRoom[0] && imagesRoom[0].image" timings="250ms ease-in" [autoplay]="false"
-        [interval]="5000" color="accent" maxWidth="auto" [proportion]="25" [slides]="slides.length" [loop]="true"
-        [hideArrows]="false" [hideIndicators]="false" [useKeyboard]="true" [useMouseWheel]="false" orientation="ltr">
+        [interval]="5000" color="accent" maxWidth="auto" [proportion]="40" [slideHeight]="'100%'"
+        [slides]="slides.length" [loop]="true" [hideArrows]="false" [hideIndicators]="true" [useKeyboard]="true"
+        [useMouseWheel]="false" orientation="ltr" [color]="'primary'">
         <mat-carousel-slide #matCarouselSlide *ngFor="let slide of imagesRoom; let i = index" [image]="slide.image"
           overlayColor="#00000040" [hideOverlay]="false"></mat-carousel-slide>
       </mat-carousel>
@@ -76,9 +77,9 @@
     </div>
     <div class="comments">
       <h3>{{comments.length}} comentarios</h3>
-      <app-comment class="comment" *ngFor="let comment of comments" [raitingValue]="comment.score" [fullName]="comment.userFullName"
-        [comment]="comment.comment" [userId]="dataUser.id" [commentUserId]="comment.userId" [idComment]="comment.id"
-        (commentDeleted)="reloadRoomDetail($event)">
+      <app-comment class="comment" *ngFor="let comment of comments" [raitingValue]="comment.score"
+        [fullName]="comment.userFullName" [comment]="comment.comment" [userId]="dataUser.id"
+        [commentUserId]="comment.userId" [idComment]="comment.id" (commentDeleted)="reloadRoomDetail($event)">
       </app-comment>
     </div>
   </mat-card>
