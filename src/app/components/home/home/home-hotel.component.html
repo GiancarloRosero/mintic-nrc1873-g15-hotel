@@ -21,48 +21,6 @@
     ¡Envíenos su consulta sin compromiso y compruébelo usted mismo!</mat-card-subtitle>
 </mat-card>
 
-<!-- <mat-card>
-  <div class="book" [formGroup]="bookForm">
-    <mat-form-field appearance="fill" class="example-form-field">
-      <mat-label>Fechas</mat-label>
-      <mat-date-range-input [rangePicker]="rangePicker">
-        <input formControlName="dateStart" matStartDate placeholder="Entrada">
-        <input formControlName="dateEnd" matEndDate placeholder="Salida">
-      </mat-date-range-input>
-      <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
-      <mat-date-range-picker #rangePicker>
-        <mat-date-range-picker-actions>
-          <button mat-button matDateRangePickerCancel>Cancelar</button>
-          <button mat-raised-button color="primary" matDateRangePickerApply>Aplicar</button>
-        </mat-date-range-picker-actions>
-      </mat-date-range-picker>
-    </mat-form-field>
-
-    <mat-form-field class="example-form-field" appearance="fill">
-      <mat-label>Cantidad de personas</mat-label>
-      <input formControlName="guestNumber" matInput type="number" min="1" max="6">
-    </mat-form-field>
-
-    <button mat-raised-button color="primary" (click)="searchRooms()" [disabled]="searchRoomsIsValid()">Buscar
-      habitaciones</button>
-  </div>
-</mat-card> -->
-
-<!-- <mat-card>
-  <mat-card-title class="title-center"></mat-card-title>
-  <mat-card-subtitle class="description-hotel">Nos gustaría acercarte cada día un poco más a nuestra región: su oferta
-    culinaria, sus oportunidades para practicar deportes al aire libre, pero también su potencial como lugar tranquilo
-    de contemplación. En la siguiente sección, le contamos un poco más sobre lo que está sucediendo en este momento.
-  </mat-card-subtitle>
-  <br/><br/>
-  <div>
-    <img class="images-news" mat-card-image [src]="'assets/images/home/img1.jpg'" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      hola
-    </mat-card-content>
-  </div>
-</mat-card> -->
 <div class="containerCards">
   <div *ngFor="let card of cards">
     <app-card-home [title]="card.title" [description]="card.descripion" [image]="card.image"></app-card-home>

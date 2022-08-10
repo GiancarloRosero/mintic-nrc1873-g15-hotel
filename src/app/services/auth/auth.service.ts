@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { UserLogin } from 'src/app/models/user-login';
 import { UserLoginSucess } from 'src/app/models/user-login-success';
 import { HttpClientService } from '../http-client/http-client.service';
@@ -34,7 +34,6 @@ export class AuthService {
   }
 
   closeSession(): void {
-    console.log("entra");
     this.cookieService.delete("login", "/");
     this.cookieService.delete("admin", "/");
     this.cookieService.deleteAll("/", environment.urlBase);

@@ -32,12 +32,12 @@ export class HomeComponent implements OnInit {
       title: 'Gastronomia',
       descripion: `Podrá degustar los platos más representativos de nuestro país de las diferentes regiones gracias a que contamos
       con los mejores chef del pais.`,
-      image: 'img2.jpg'
+      image: 'gastronomy.jpg'
     },
     {
       title: 'Proximos Eventos',
       descripion: `Le ofrecemos el mejor equipamiento tecnológico y ayuda especializada para que su evento sea todo un éxito.`,
-      image: 'img3.jpg'
+      image: 'eventos.jpg'
     }
   ];
 
