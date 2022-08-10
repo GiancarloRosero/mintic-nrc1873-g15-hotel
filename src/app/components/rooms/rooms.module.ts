@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { MatCarouselModule } from 'ng-mat-carousel';
 import { MatCardModule } from '@angular/material/card';
@@ -39,6 +39,9 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   exports: [
     RoomsComponent
+  ],
+  providers: [
+    DatePipe
   ]
 })
 export class RoomsModule { }

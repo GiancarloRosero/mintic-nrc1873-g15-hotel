@@ -5,7 +5,6 @@ import { Observable } from "rxjs/internal/Observable";
 import { catchError } from "rxjs/operators";
 import { Endpoint } from "src/app/config/endpoints";
 
-
 @Injectable({
   providedIn: "root",
 })
@@ -29,7 +28,8 @@ export class HttpClientService {
   ): Observable<T> {
     return this.handleErrors(
       this.http.get<T>(
-        this.getUrl(endpoint, pathParams)
+        this.getUrl(endpoint, pathParams),
+        this.getOptions(false, options)
       )
     );
   }
@@ -52,7 +52,8 @@ export class HttpClientService {
     return this.handleErrors(
       this.http.post<T>(
         this.getUrl(endpoint, pathParams),
-        body
+        body,
+        this.getOptions(false, options)
       )
     );
   }

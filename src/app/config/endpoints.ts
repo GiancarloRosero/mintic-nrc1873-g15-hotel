@@ -11,6 +11,7 @@ export const ENDPOINTS = {
     register: new Endpoint(URL_BASE, "auth/register"),
 
     getAllRooms: new Endpoint(URL_BASE, "room/get-all-rooms"),
+    getAllRoomsBetween: new Endpoint(URL_BASE, "room/get-all-rooms-between"),
     getRoomDetail: new Endpoint(URL_BASE, "room/get-room-detail/{roomCode}"),
     addRoom: new Endpoint(URL_BASE, "room/add-room"),
     reserveRoom: new Endpoint(URL_BASE, "room/reserve"),
