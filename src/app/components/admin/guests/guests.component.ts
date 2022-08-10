@@ -4,9 +4,13 @@ import { ENDPOINTS } from 'src/app/config/endpoints';
 import { Guest } from 'src/app/models/guest';
 import { ResponseService } from 'src/app/models/response-service';
 import { UserList } from 'src/app/models/user-list';
+import { UserLoginSucess } from 'src/app/models/user-login-success';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpClientService } from 'src/app/services/http-client/http-client.service';
 import { SpinnerService } from 'src/app/services/spinner/spinner.service';
 
+
+const INVALID_DATA = [null, undefined, "", "null", "undefined"];
 
 @Component({
   selector: 'app-guests',
@@ -24,20 +28,36 @@ export class GuestsComponent implements OnInit {
 
   datos: Guest[] = [];
 
-  constructor(private httpClient: HttpClientService, private spinner: SpinnerService) { }
+  dataUser: UserLoginSucess;
+
+  constructor(private httpClient: HttpClientService, private spinner: SpinnerService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.loadDataUser();
     this.loadData();
   }
 
   loadData(): void {
     const spinner = this.spinner.start("Cargando listado de clientes...");
-    this.httpClient.get<ResponseService<UserList>>(ENDPOINTS.getAllUsersFromAdmin).subscribe((result: ResponseService<UserList>) => {
-      if (result.status == 200) {
-        this.datos = result.data;
-      }
-      this.spinner.stop(spinner);
-    });
+    this.httpClient.get<ResponseService<UserList>>(
+      this.dataUser.rol == 2 ? ENDPOINTS.getAllUsersFromAdmin : ENDPOINTS.getAllUsersFromSuperadmin)
+      .subscribe((result: ResponseService<UserList>) => {
+        if (result.status == 200) {
+          this.datos = result.data;
+        }
+        this.spinner.stop(spinner);
+      });
+  }
+
+  get isLogin(): boolean {
+    return !INVALID_DATA.includes(String(this.authService.isLoginUser()));
+  }
+
+  loadDataUser(): void {
+    if (this.isLogin) {
+      this.dataUser = this.authService.isLoginUser();
+    }
   }
 
   editarFila(cod: number): void {

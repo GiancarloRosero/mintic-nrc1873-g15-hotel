@@ -107,6 +107,9 @@ export class RoomComponent implements OnInit {
   }
 
   canAddComment(): void {
+    if (!this.isLogin) {
+      return;
+    }
     const map = new Map();
     map.set("userId", this.dataUser.id);
     map.set("roomCode", this.codeRoomParam);
@@ -162,10 +165,14 @@ export class RoomComponent implements OnInit {
   }
 
   reserve(): void {
-    var spinnerRef = this.spinnerService.start("Reservando habitación...");
     if (!this.bookForm.valid) {
       return;
     }
+    if (!this.isLogin) {
+      this.router.navigate(['auth/login']);
+      return;
+    }
+    var spinnerRef = this.spinnerService.start("Reservando habitación...");
     const booking = {
       userId: this.dataUser.id,
       roomCode: this.codeRoomParam,
@@ -183,7 +190,7 @@ export class RoomComponent implements OnInit {
   }
 
   reloadRoomDetail(value: boolean): void {
-    if(value) {
+    if (value) {
       this.loadData();
     }
   }
