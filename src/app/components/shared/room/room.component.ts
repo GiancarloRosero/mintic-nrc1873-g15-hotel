@@ -106,6 +106,24 @@ export class RoomComponent implements OnInit {
     return !INVALID_DATA.includes(String(this.authService.isLoginUser()));
   }
 
+  get isSuperAdmin(): boolean {
+    return this.dataUser && this.dataUser.rol == 3;
+  }
+
+  deleteRoom(): void {
+    var spinnerRef = this.spinnerService.start("Eliminando habitación...");
+    const body = {
+      roomCode: this.codeRoomParam
+    };
+    this.httpClient.post(ENDPOINTS.deleteRoom, body).subscribe((result: any) => {
+      if(result.status == 200) {
+        this.spinnerService.stop(spinnerRef);
+        this.snackBar.openSnackBar("Habitación eliminada");
+        this.router.navigate(['rooms']);
+      }
+    });
+  }
+
   canAddComment(): void {
     if (!this.isLogin) {
       return;
