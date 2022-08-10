@@ -46,6 +46,8 @@ export class RoomComponent implements OnInit {
 
   comments: AddComment[] = [];
 
+  minDate = new Date();
+
   constructor(private httpClient: HttpClientService, private activatedRoute: ActivatedRoute,
     private spinnerService: SpinnerService, private snackBar: SnackBarService, private authService: AuthService,
     private router: Router) {
