@@ -31,14 +31,12 @@ export class UploadImagesComponent implements OnInit, OnChanges {
 
   constructor(private spinnerService: SpinnerService, private httpClient: HttpClientService, private snackBarService: SnackBarService) { }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
     if (changes.codeRoom && !INVALIDA_DATA.includes(changes.codeRoom.currentValue)) {
       this.uploadFiles();
     }
   }
 
   ngOnInit(): void {
-    // this.imageInfos = this.uploadService.getFiles();
   }
 
   selectFiles(event: any): void {
