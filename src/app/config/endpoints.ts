@@ -15,6 +15,7 @@ export const ENDPOINTS = {
     getRoomDetail: new Endpoint(URL_BASE, "room/get-room-detail/{roomCode}"),
     addRoom: new Endpoint(URL_BASE, "room/add-room"),
     deleteRoom: new Endpoint(URL_BASE, "room/delete-room"),
+    editRoom: new Endpoint(URL_BASE, "room/edit-room/{roomCode}"),
     reserveRoom: new Endpoint(URL_BASE, "room/reserve"),
 
     uploadImages: new Endpoint(URL_BASE, "room/add-images-room"),

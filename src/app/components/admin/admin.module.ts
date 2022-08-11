@@ -12,13 +12,15 @@ import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from '../shared/shared.module';
 import { FileUploadServiceService } from 'src/app/services/file-upload-service.service';
 import { MatTableModule } from '@angular/material/table';
+import { EditRoomComponent } from './edit-room/edit-room.component';
 
 
 
 @NgModule({
   declarations: [
     AddRoomComponent,
-    GuestsComponent
+    GuestsComponent,
+    EditRoomComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,6 @@ import { MatTableModule } from '@angular/material/table';
     MatInputModule,
     MatFormFieldModule
   ],
-  providers: [],
   bootstrap: [GuestsComponent]
 })
 export class AdminModule { }
