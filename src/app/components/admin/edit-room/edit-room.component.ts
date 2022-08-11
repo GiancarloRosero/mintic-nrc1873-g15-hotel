@@ -60,7 +60,7 @@ export class EditRoomComponent implements OnInit {
       descriptionLarge: this.formDetailRoom.controls.descriptionLarge.value,
       price: this.formDetailRoom.controls.price.value
     }
-    this.httpClient.post(ENDPOINTS.editRoom, room).subscribe((result: any) => {
+    this.httpClient.post(ENDPOINTS.updateRoom, room, map).subscribe((result: any) => {
       if (result.status == 200) {
         this.snackBar.openSnackBar("Habitación actualizada con éxito!");
         this.router.navigate(['/rooms/room', this.codeRoomParam]);

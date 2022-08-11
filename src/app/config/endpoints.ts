@@ -15,11 +15,13 @@ export const ENDPOINTS = {
     getRoomDetail: new Endpoint(URL_BASE, "room/get-room-detail/{roomCode}"),
     addRoom: new Endpoint(URL_BASE, "room/add-room"),
     deleteRoom: new Endpoint(URL_BASE, "room/delete-room"),
-    editRoom: new Endpoint(URL_BASE, "room/edit-room/{roomCode}"),
+    updateRoom: new Endpoint(URL_BASE, "room/update-room/{roomCode}"),
     reserveRoom: new Endpoint(URL_BASE, "room/reserve"),
 
     uploadImages: new Endpoint(URL_BASE, "room/add-images-room"),
 
+    updateUser: new Endpoint(URL_BASE, "user/update-user"),
+    getUser: new Endpoint(URL_BASE, "user/get-user/{userId}"),
     deleteUser: new Endpoint(URL_BASE, "user/delete-user"),
     getAllUsersFromAdmin:new Endpoint(URL_BASE,"user/get-all-users-from-admin"),
     getAllUsersFromSuperadmin:new Endpoint(URL_BASE,"user/get-all-users-from-superadmin"),

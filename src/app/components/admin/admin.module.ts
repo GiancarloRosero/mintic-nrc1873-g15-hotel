@@ -13,6 +13,8 @@ import { SharedModule } from '../shared/shared.module';
 import { FileUploadServiceService } from 'src/app/services/file-upload-service.service';
 import { MatTableModule } from '@angular/material/table';
 import { EditRoomComponent } from './edit-room/edit-room.component';
+import { EditGuestComponent } from './edit-guest/edit-guest.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -20,7 +22,8 @@ import { EditRoomComponent } from './edit-room/edit-room.component';
   declarations: [
     AddRoomComponent,
     GuestsComponent,
-    EditRoomComponent
+    EditRoomComponent,
+    EditGuestComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +37,8 @@ import { EditRoomComponent } from './edit-room/edit-room.component';
     MatButtonModule,
     MatCardModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDialogModule
   ],
   bootstrap: [GuestsComponent]
 })

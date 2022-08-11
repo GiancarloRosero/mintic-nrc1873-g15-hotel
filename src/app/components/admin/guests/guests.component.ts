@@ -1,4 +1,5 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { ENDPOINTS } from 'src/app/config/endpoints';
 import { Guest } from 'src/app/models/guest';
@@ -8,6 +9,7 @@ import { UserLoginSucess } from 'src/app/models/user-login-success';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpClientService } from 'src/app/services/http-client/http-client.service';
 import { SpinnerService } from 'src/app/services/spinner/spinner.service';
+import { EditGuestComponent } from '../edit-guest/edit-guest.component';
 
 
 const INVALID_DATA = [null, undefined, "", "null", "undefined"];
@@ -31,7 +33,7 @@ export class GuestsComponent implements OnInit {
   dataUser: UserLoginSucess;
 
   constructor(private httpClient: HttpClientService, private spinner: SpinnerService,
-    private authService: AuthService) { }
+    private authService: AuthService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadDataUser();
@@ -60,7 +62,16 @@ export class GuestsComponent implements OnInit {
     }
   }
 
-  editarFila(columnId: number, userId: number): void {
+  editUser(columnId: number, userId: number): void {
+    const dialogRef = this.dialog.open(EditGuestComponent, {
+      data: {
+        userId: userId
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.dataSource.renderRows();
+    });
   }
 
   deleteUser(columnId: number, userId: number): void {

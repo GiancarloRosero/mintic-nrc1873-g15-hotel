@@ -45,7 +45,7 @@ export class RoomToListComponent implements OnInit {
   }
 
   viewRoom(): void {
-    this.router.navigate(['/rooms/room', this.codeRoom]);
+    this.router.navigate(['/admin/manage-room', this.codeRoom]);
   }
 
   get contentRooms() {
