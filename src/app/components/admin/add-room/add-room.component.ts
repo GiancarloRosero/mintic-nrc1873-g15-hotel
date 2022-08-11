@@ -24,11 +24,17 @@ export class AddRoomComponent implements OnInit {
       descriptionShort: new FormControl('', [Validators.required]),
       descriptionLarge: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required]),
-      code: new FormControl('', [Validators.required, Validators.maxLength(30)])
+      code: new FormControl('', [Validators.required, this.noWhitespaceValidator, Validators.maxLength(30)])
     });
   }
 
   ngOnInit(): void {
+  }
+
+  noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
   }
 
   isSelectedImages(value: boolean) {

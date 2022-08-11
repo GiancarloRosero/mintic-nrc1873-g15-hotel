@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public noWhitespaceValidator(control: FormControl) {
+  noWhitespaceValidator(control: FormControl) {
     const isWhitespace = (control.value || '').trim().length === 0;
     const isValid = !isWhitespace;
     return isValid ? null : { 'whitespace': true };
