@@ -125,7 +125,7 @@ export class RoomComponent implements OnInit {
   }
 
   editRoom(): void {
-    this.router.navigate(['/rooms/manage-room', this.codeRoomParam]);
+    this.router.navigate(['/admin/manage-room', this.codeRoomParam]);
   }
 
   canAddComment(): void {
