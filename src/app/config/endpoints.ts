@@ -19,6 +19,7 @@ export const ENDPOINTS = {
 
     uploadImages: new Endpoint(URL_BASE, "room/add-images-room"),
 
+    deleteUser: new Endpoint(URL_BASE, "user/delete-user"),
     getAllUsersFromAdmin:new Endpoint(URL_BASE,"user/get-all-users-from-admin"),
     getAllUsersFromSuperadmin:new Endpoint(URL_BASE,"user/get-all-users-from-superadmin"),
 

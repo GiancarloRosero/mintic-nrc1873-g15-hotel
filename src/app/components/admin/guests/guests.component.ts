@@ -60,13 +60,22 @@ export class GuestsComponent implements OnInit {
     }
   }
 
-  editarFila(cod: number): void {
+  editarFila(columnId: number, userId: number): void {
   }
 
-  borrarFila(cod: number): void {
+  deleteUser(columnId: number, userId: number): void {
+    const user = {
+      id: userId
+    };
     if (confirm("¿Realmente quiere borrarlo?")) {
-      this.datos.splice(cod, 1);
-      this.dataSource.renderRows();
+      const spinner = this.spinner.start("Eliminando usuario...");
+      this.httpClient.post(ENDPOINTS.deleteUser, user).subscribe((result: any) => {
+        if (result.status == 200) {
+          this.datos.splice(columnId, 1);
+          this.dataSource.renderRows();
+        }
+        this.spinner.stop(spinner);
+      });
     }
   }
 

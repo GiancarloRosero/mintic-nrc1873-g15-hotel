@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z- ]{1,63}$',),]),
       lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z- ]{1,63}$',),]),
-      document: new FormControl('', [Validators.required, Validators.pattern('[0-9]{1,10}$',),]),
+      document: new FormControl('', [Validators.required, this.noWhitespaceValidator, Validators.pattern('[0-9]{1,10}$',),]),
       email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,63}$',),]),
       password: new FormControl('', [Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)]),
       repeatPassword: new FormControl('', [Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)]),
@@ -31,6 +31,12 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
   }
 
   checkPasswords: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {

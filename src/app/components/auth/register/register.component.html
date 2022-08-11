@@ -1,6 +1,6 @@
 <div class="text-center container w-50 p-5 m-5 mx-auto">
   <h4 class="text-center">Registrarse</h4>
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate class="w-50 mx-auto" >
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate class="w-50 mx-auto">
     <div>
       <div class="w-100 mx-auto">
         <mat-form-field class="mt-2 d-block">
@@ -68,7 +68,8 @@
       </div>
       <div class="w-100 mx-auto">
         <mat-form-field class="mt-2 d-block">
-          <input matInput type="password" placeholder="Confirmar contraseña" formControlName="repeatPassword" [errorStateMatcher]="matcher">
+          <input matInput type="password" placeholder="Confirmar contraseña" formControlName="repeatPassword"
+            [errorStateMatcher]="matcher">
           <mat-error *ngIf="registerForm.hasError('notSame')">
             Las contraseñas no coinciden
           </mat-error>
@@ -78,7 +79,7 @@
           </mat-error>
         </mat-form-field>
       </div>
-        <button [disabled]="!registerForm.valid" mat-raised-button color="primary" mat-button>Registrarse</button>
+      <button [disabled]="!registerForm.valid" mat-raised-button color="primary" mat-button>Registrarse</button>
     </div>
   </form>
 </div>
