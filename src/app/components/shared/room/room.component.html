@@ -13,6 +13,7 @@
         [interval]="5000" color="accent" maxWidth="auto" [proportion]="40" [slideHeight]="'100%'"
         [slides]="slides.length" [loop]="true" [hideArrows]="false" [hideIndicators]="true" [useKeyboard]="true"
         [useMouseWheel]="false" orientation="ltr" [color]="'primary'">
+        {{imagesRoom | json}
         <mat-carousel-slide #matCarouselSlide *ngFor="let slide of imagesRoom; let i = index" [image]="slide.image"
           overlayColor="#00000040" [hideOverlay]="false"></mat-carousel-slide>
       </mat-carousel>

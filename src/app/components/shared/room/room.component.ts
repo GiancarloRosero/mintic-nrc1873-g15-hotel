@@ -69,9 +69,9 @@ export class RoomComponent implements OnInit {
     map.set("roomCode", this.codeRoomParam);
     this.httpClient.get<ResponseService<String>>(ENDPOINTS.loadImagesFromRoom, map).subscribe((result: ResponseService<String>) => {
       if (result.status == 200) {
-        result.data.forEach((url) => {
+        result.data.forEach((idImage) => {
           this.slides.push({
-            image: environment.urlBase + "/room/get-image/" + url
+            image: environment.urlBase + "/room/get-image/" + idImage
           });
         });
       }
