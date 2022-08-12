@@ -32,6 +32,6 @@
 
   <app-upload-images (isSelectedImages)="isSelectedImages($event)" [codeRoom]="codeRoom">
   </app-upload-images>
-  <button [disabled]="!roomForm.valid || !this.childImages" mat-raised-button color="primary"
+  <button [disabled]="!roomForm.valid || !this.childImages || roomForm.hasError('whitespace')" mat-raised-button color="primary"
     (click)="addRoom()">Agregar habitación</button>
 </main>

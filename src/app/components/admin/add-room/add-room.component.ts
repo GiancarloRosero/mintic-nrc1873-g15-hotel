@@ -32,9 +32,8 @@ export class AddRoomComponent implements OnInit {
   }
 
   noWhitespaceValidator(control: FormControl) {
-    const isWhitespace = (control.value || '').trim().length === 0;
-    const isValid = !isWhitespace;
-    return isValid ? null : { 'whitespace': true };
+    const isSpace = (control.value || '').match(/\s/g);
+    return isSpace ? { 'whitespace': true } : null;
   }
 
   isSelectedImages(value: boolean) {
@@ -60,7 +59,7 @@ export class AddRoomComponent implements OnInit {
         // servicio para agregar imágenes result.data tiene el código de habitación
         this.snackBarService.openSnackBar("Habitación agregada existosamente!");
         this.codeRoom = result.data;
-      }else{
+      } else {
         this.snackBarService.openSnackBar("Ocurrió un error");
       }
     });
