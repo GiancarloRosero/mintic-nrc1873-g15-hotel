@@ -22,6 +22,7 @@ export class UploadImagesComponent implements OnInit, OnChanges {
   previews: string[] = [];
   imageInfos?: Observable<any>;
   imagesMaxError: number = 0;
+  sizeMAx: boolean = false;
 
   @Input()
   codeRoom: string = "";
@@ -40,6 +41,7 @@ export class UploadImagesComponent implements OnInit, OnChanges {
   }
 
   selectFiles(event: any): void {
+    this.sizeMAx = false;
     this.message = [];
     this.progressInfos = [];
     this.selectedFiles = event.target.files;
@@ -48,6 +50,11 @@ export class UploadImagesComponent implements OnInit, OnChanges {
       const numberOfFiles = this.selectedFiles.length;
       for (let i = 0; i < numberOfFiles; i++) {
         const reader = new FileReader();
+        if (this.selectedFiles[i].size / 1024 / 1024 > 2) {
+          this.sizeMAx = true;
+          this.isSelectedImages.emit(false);
+          return;
+        }
         reader.onload = (e: any) => {
           this.previews.push(e.target.result);
         };

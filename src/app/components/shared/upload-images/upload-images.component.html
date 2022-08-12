@@ -27,6 +27,9 @@
 <div *ngIf="imagesMaxError > 4" class="alert alert-secondary my-3" role="alert">
   El máximo permitido son 4 imágenes
 </div>
+<div *ngIf="sizeMAx" class="alert alert-secondary my-3" role="alert">
+  El tamaño máximo por cada imagen son 2Mb
+</div>
 <div *ngIf="message.length" class="alert alert-secondary my-3" role="alert">
   <ul *ngFor="let msg of message; let i = index">
     <li>{{ msg }}</li>
